@@ -11,7 +11,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
 
-工程生产后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
+工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
 
