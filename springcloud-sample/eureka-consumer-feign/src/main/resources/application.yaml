@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka-consumer-feign
+    
+server:
+  port: 7093
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+      
+logging:
+  file: ${spring.application.name}.log
