@@ -14,6 +14,12 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>1.5.10.RELEASE</version>
+	<relativePath/> <!-- lookup parent from repository -->
+</parent>
 
 <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,12 +32,6 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 	<dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka-server</artifactId>
-	</dependency>
-
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
 	</dependency>
 </dependencies>
 
@@ -48,7 +48,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 </dependencyManagement>
 ```
 
-### 启用 Eureka Server
+### 2.启用Eureka Server
 
 在 EurekaSererApplication.java 上增加<html>@EnableEurekaServer</html>注解
 
@@ -62,7 +62,7 @@ public class EurekaServerApplication {
 	}
 }
 ```
-### 修改应用配置
+### 3.修改应用配置
 修改 application.properties，增加如下配置：
 
 ```
@@ -83,4 +83,6 @@ eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 * eureka.client.fetchRegistry: 值为false无需注册自身
 * eureka.client.serviceUrl.defaultZone: 指明了应用的URL
 
-### 启动Eureka Service
+### 4.启动Eureka Server
+直接运行EurekaServerApplication的main函数，启动Eureka Server。
+访问http://localhost:7071/，可以看到Eureka Server自带的UI 管理界面
