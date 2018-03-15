@@ -7,9 +7,9 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Server工程，工程名称为eureka-provider。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discovery工程，工程名称为eureka-provider。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_discovery.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
