@@ -63,7 +63,7 @@ public class EurekaServerApplication {
 }
 ```
 ### 3.修改应用配置
-修改 application.properties，增加如下配置：
+修改 application.propertie或application.yaml，增加如下配置：
 
 ```
 spring.application.name=eureka-server
@@ -85,4 +85,4 @@ eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 
 ### 4.启动Eureka Server
 直接运行EurekaServerApplication的main函数，启动Eureka Server。
-访问http://localhost:7071/，可以看到Eureka Server自带的UI 管理界面
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
