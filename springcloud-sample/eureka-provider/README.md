@@ -101,6 +101,6 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ### 4.启动Eureka Client
 直接运行EurekaProviderApplication的main函数，启动Eureka Client。
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上增加一条服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条服务实例记录
 
 访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用服务/hello接口
