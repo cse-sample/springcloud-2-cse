@@ -70,6 +70,19 @@ public class EurekaProviderApplication {
 }
 ```
 
+为服务增加一个简单的接口：
+
+```Java
+@RestController
+public class ProviderController {
+
+	@RequestMapping("/hello/{name}")
+	public String hello(@PathVariable String name) {
+		return "hello " + name;
+	}
+}
+```
+
 ### 3.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
@@ -87,4 +100,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 
 ### 4.启动Eureka Client
 直接运行EurekaProviderApplication的main函数，启动Eureka Client。
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
+
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上增加一条服务实例记录
+
+访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用服务/hello接口
