@@ -77,10 +77,10 @@ eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 ```
 其中：
 
-server.port: 指明了应用启动的端口号
-eureka.instance.hostname: 应用的主机名称
-eureka.client.registerWithEureka: 值为false自身仅作为服务器，不作为客户端
-eureka.client.fetchRegistry: 值为false无需注册自身
-eureka.client.serviceUrl.defaultZone: 指明了应用的URL
+* server.port: 指明了应用启动的端口号
+* eureka.instance.hostname: 应用的主机名称
+* eureka.client.registerWithEureka: 值为false自身仅作为服务器，不作为客户端
+* eureka.client.fetchRegistry: 值为false无需注册自身
+* eureka.client.serviceUrl.defaultZone: 指明了应用的URL
 
 ### 启动Eureka Service
