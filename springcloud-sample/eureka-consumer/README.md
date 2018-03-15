@@ -53,16 +53,29 @@
 
 ### 2.启用Eureka Client
 
-在 EurekaProviderApplication.java 上增加<html>@EnableDiscoveryClient</html>注解表明应用开启服务注册与发现功能。
+在 EurekaProviderApplication.java 上
 
+增加@EnableDiscoveryClient注解表明应用开启服务注册与发现功能，
+
+初始化RestTemplate 与 AsyncRestTemplate这两个客户端进行服务调用。
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaProviderApplication {
+public class EurekaConsumerApplication {
 
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	public AsyncRestTemplate asyncRestTemplate() {
+		return new AsyncRestTemplate();
+	}
+	
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaServerApplication.class, args);
+		SpringApplication.run(EurekaConsumerApplication.class, args);
 	}
 }
 ```
