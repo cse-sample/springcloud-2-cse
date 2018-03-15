@@ -4,7 +4,7 @@
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Server工程，工程名称为eureka-provider。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discover工程，工程名称为eureka-consumer。
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
 
