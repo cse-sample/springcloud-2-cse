@@ -29,13 +29,19 @@ public class EurekaServerApplication {
 修改 application.properties，增加如下配置：
 
 ···
+
 spring.application.name=eureka-server
+
 server.port=7071
+
 eureka.instance.hostname=localhost
 
 eureka.client.register-with-eureka=false
+
 eureka.client.fetch-registry=false
+
 eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
+
 ···
 
 
