@@ -83,6 +83,6 @@ eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 * eureka.client.fetchRegistry: 值为false无需注册自身
 * eureka.client.serviceUrl.defaultZone: 指明了应用的URL
 
-### 4.启动Eureka Server
+### 4.启动服务注册中心
 直接运行EurekaServerApplication的main函数，启动Eureka Server。
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
