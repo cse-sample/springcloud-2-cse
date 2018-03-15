@@ -1,9 +1,6 @@
-## 创建服务提供者
+## 创建服务消费者
 
-Eureka提供云端服务发现，以实现云端中间层服务自动发现和故障转移。
-Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细分为 Eureka Server, Eureka Client。
-
-这里我们基于Eureka Client创建一个服务提供者服务。
+这里我们基于Eureka Client创建一个服务消费者服务。
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
