@@ -1,7 +1,13 @@
 ### 项目简介
-本项目讲述一个基于SpringCloud的微服务示例如何切换到华为云CSE（Cloud Service Engine）的过程。
+一个基于SpringCloud的微服务完整示例
 
-springcloud-sample 基于springcloud技术构建的微服务示例
+eureka-server 基于Eureka的服务注册中心
 
-springcloud-2-cse sample 基于springcloud开发的服务平滑切换到CSE云服务平台示例
+eureka-provider 基于Eureka的服务提供者
+
+eureka-consumer 基于Eureka的服务消费者
+
+eureka-consumer-ribbon 服务消费者-Ribbon
+
+eureka-consumer-feign 服务消费者-Feign
 
