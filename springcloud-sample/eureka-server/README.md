@@ -13,10 +13,11 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 启用 Eureka Server
 
-在 EurekaSererApplication.java 上增加@EnableEurekaServer注解
+在 EurekaSererApplication.java 上增加<html>@EnableEurekaServer</html>注解
 
 ```
 @SpringBootApplication
+@EnableEurekaServer
 public class EurekaServerApplication {
 
 	public static void main(String[] args) {
