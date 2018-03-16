@@ -7,7 +7,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discovery工程，工程名称为eureka-provider。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discovery工程，工程名称为service-provider。
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_discovery.png)
 
@@ -56,13 +56,13 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 2.启用Eureka Client
 
-在 EurekaProviderApplication.java 上增加<html>@EnableDiscoveryClient</html>注解表明应用开启服务注册与发现功能。
+在 ProviderApplication.java 上增加<html>@EnableDiscoveryClient</html>注解表明应用开启服务注册与发现功能。
 
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaProviderApplication {
+public class ProviderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaServerApplication.class, args);
@@ -99,8 +99,8 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
 ### 4.启动Eureka Client
-直接运行EurekaProviderApplication的main函数，启动Eureka Client。
+直接运行ProviderApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条P服务实例记录
 
 访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用服务/hello接口
