@@ -1,10 +1,10 @@
 spring:
   application:
-    name: eureka-consumer
-    
+    name: service-provider
+
 server:
-  port: 7091
-  
+  port: 7081
+
 eureka:
   client:
     serviceUrl:
