@@ -33,7 +33,7 @@ public class ConsumerController {
 	@RequestMapping("/hello-sync/{name}")
 	public String syncHello(@PathVariable String name) {
 		
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
 		String url = serviceInst.getUri() + "/hello/" + name;
 
@@ -44,7 +44,7 @@ public class ConsumerController {
 	
 	@RequestMapping("/hello-async/{name}")
 	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
 		String url = serviceInst.getUri() + "/hello/" + name;
 
@@ -56,7 +56,7 @@ public class ConsumerController {
 	
 	@GetMapping("/consumer/services")
 	public String services() {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
 		String url = serviceInst.getUri() + "/services";
 
@@ -67,7 +67,7 @@ public class ConsumerController {
 	
 	@GetMapping(value = "/consumer/instances")
 	public String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId) {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
 		String url = serviceInst.getUri() + "/instances";
 
