@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.huawei.sample</groupId>
-	<artifactId>eureka-consumer</artifactId>
+	<artifactId>service-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>eureka-consumer</name>
+	<name>service-consumer</name>
 	<description>Spring Cloud Eureka Client Consumer</description>
 
 	<parent>
