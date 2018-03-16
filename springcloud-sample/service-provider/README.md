@@ -54,7 +54,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 </dependencyManagement>
 ```
 
-### 2.启用Eureka Client
+### 2.启用服务注册和发现
 
 在 ProviderApplication.java 上增加<html>@EnableDiscoveryClient</html>注解表明应用开启服务注册与发现功能。
 
@@ -98,9 +98,9 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
-### 4.启动Eureka Client
+### 4.启动服务
 直接运行ProviderApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条P服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条SERVICE-PROVIDER服务实例记录
 
-访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用服务/hello接口
+访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用service-provider服务/hello接口
