@@ -1,13 +1,10 @@
-## 创建服务提供者
+## 创建服务消费者
 
-Eureka提供云端服务发现，以实现云端中间层服务自动发现和故障转移。
-Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细分为 Eureka Server, Eureka Client。
-
-这里我们基于Eureka Client创建一个服务提供者服务。
+这里我们基于Eureka Client创建一个服务消费者服务。
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Server工程，工程名称为eureka-provider。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discover工程，工程名称为eureka-consumer。
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
 
@@ -56,40 +53,76 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 2.启用Eureka Client
 
-在 EurekaProviderApplication.java 上增加<html>@EnableDiscoveryClient</html>注解表明应用开启服务注册与发现功能。
+在 EurekaProviderApplication.java 上
 
+增加@EnableDiscoveryClient注解表明应用开启服务注册与发现功能，
+
+初始化RestTemplate 与 AsyncRestTemplate这两个客户端进行服务调用。
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaProviderApplication {
+public class EurekaConsumerApplication {
 
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	public AsyncRestTemplate asyncRestTemplate() {
+		return new AsyncRestTemplate();
+	}
+	
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaServerApplication.class, args);
+		SpringApplication.run(EurekaConsumerApplication.class, args);
 	}
 }
 ```
 
-为服务增加一个简单的接口：
+为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个客户端调用服务提供者接口：
 
 ```Java
 @RestController
-public class ProviderController {
+public class ConsumerController {
 
-	@RequestMapping("/hello/{name}")
-	public String hello(@PathVariable String name) {
-		return "hello " + name;
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired 
+	private AsyncRestTemplate asyncRestTemplate;
+
+	@Autowired
+	private LoadBalancerClient loadBalancerClient;
+
+	@RequestMapping("/hello-sync/{name}")
+	public String syncHello(@PathVariable String name) {
+		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+
+		String url = serviceInst.getUri() + "/hello/" + name;
+
+		return restTemplate.getForObject(url, String.class);
 	}
-}
+	
+	@RequestMapping("/hello-async/{name}")
+	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
+		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
+
+		String url = serviceInst.getUri() + "/hello/" + name;
+
+		ListenableFuture<ResponseEntity<String>> future = asyncRestTemplate.getForEntity(url, String.class);
+		return future.get().getBody();
+	}
+}	
 ```
 
 ### 3.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=eureka-provider
+spring.application.name=service-consumer
 
-server.port=7081
+server.port=7091
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
@@ -98,9 +131,12 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
-### 4.启动Eureka Client
-直接运行EurekaProviderApplication的main函数，启动Eureka Client。
+### 4.启动应用
+直接运行EurekaProviderApplication的main函数
 
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上增加一条服务实例记录
 
-访问[http://localhost:7081/hello/springcloud](http://localhost:7081/hello/springcloud)，调用服务/hello接口
+访问[http://localhost:7091/hello-sync/springcloud](http://localhost:7081/hello-sync/springcloud)，同步方式调用服务/hello接口
+
+访问[http://localhost:7091/hello-async/springcloud](http://localhost:7081/hello-async/springcloud)，异步方式调用服务/hello接口
+
