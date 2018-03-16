@@ -4,7 +4,7 @@
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discover工程，工程名称为eureka-consumer。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Discover工程，工程名称为service-consumer。
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
 
@@ -51,7 +51,7 @@
 </dependencyManagement>
 ```
 
-### 2.启用Eureka Client
+### 2.启用服务注册发现
 
 在 EurekaProviderApplication.java 上
 
@@ -62,7 +62,7 @@
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaConsumerApplication {
+public class ConsumerApplication {
 
 	@Bean
 	public RestTemplate restTemplate() {
@@ -132,9 +132,9 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
 ### 4.启动应用
-直接运行EurekaProviderApplication的main函数
+直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上增加一条服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
 
 访问[http://localhost:7091/hello-sync/springcloud](http://localhost:7081/hello-sync/springcloud)，同步方式调用服务/hello接口
 
