@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +24,9 @@ public class ProviderController {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	@RequestMapping("/hello")
-	public String hello() {
-		return "hello world";
+	@RequestMapping("/hello/{name}")
+	public String hello(@PathVariable String name) {
+		return "hello " + name;
 	}
 
 	@RequestMapping("/services")
