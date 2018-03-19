@@ -54,7 +54,7 @@ public class ConsumerController {
 		return future.get().getBody();
 	}
 	
-	@GetMapping("/consumer/services")
+	@RequestMapping("/consumer/services")
 	public String services() {
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
@@ -65,7 +65,7 @@ public class ConsumerController {
 		return restTemplate.getForObject(url, String.class);
 	}
 	
-	@GetMapping(value = "/consumer/instances")
+	@RequestMapping(value = "/consumer/instances")
 	public String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId) {
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
