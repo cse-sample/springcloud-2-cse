@@ -14,10 +14,10 @@ Spring Cloud为Feign增加了对Spring MVC注解的支持，整合了Ribbon和Eu
 另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加feign依赖
 
 ```xml
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-feign</artifactId>
-	</dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-feign</artifactId>
+</dependency>
 ```
 
 ### 2.添加@EnableFeignClients注解开启Feign的功能
