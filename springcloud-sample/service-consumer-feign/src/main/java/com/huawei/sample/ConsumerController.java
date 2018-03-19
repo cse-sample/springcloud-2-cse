@@ -19,12 +19,12 @@ public class ConsumerController {
 		return consumerFeignClient.hello(name);
 	}
 		
-	@GetMapping("/consumer/services")
+	@RequestMapping("/consumer/services")
 	public String services() {
 		return consumerFeignClient.services();
 	}
 
-	@GetMapping(value = "/consumer/instances")
+	@RequestMapping(value = "/consumer/instances")
 	public String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId) {
 
 		LOGGER.info("serviceId: " + serviceId);
@@ -32,7 +32,7 @@ public class ConsumerController {
 		return consumerFeignClient.instances(serviceId);
 	}
 
-	@GetMapping(value = "/consumer/hello")
+	@RequestMapping(value = "/consumer/hello")
 	public String hello() {
 		return consumerFeignClient.hello();
 	}
