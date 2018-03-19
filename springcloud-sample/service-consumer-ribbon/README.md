@@ -1,4 +1,4 @@
-## 创建服务消费者
+## 创建服务消费者--使用Ribbon
 
 Ribbon是一个客户端负载均衡的组件
  * 和Eureka完美整合
@@ -81,9 +81,9 @@ public class ConsumerController {
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=service-consumer
+spring.application.name=service-consumer-ribbon
 
-server.port=7091
+server.port=7092
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
@@ -95,7 +95,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ### 4.启动应用
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON服务实例记录
 
 访问[http://localhost:7092/hello-sync/springcloud](http://localhost:7092/hello-sync/springcloud)，同步方式调用服务/hello接口
 
