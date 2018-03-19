@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("service-provider")
 public interface ConsumerFeignClient {
 
-        @GetMapping("/hello/{name}")
+        @RequestMapping(value = "/hello/{name}")
 	public String hello(@PathVariable String name);
 	
-	@GetMapping("/services")
+	@RequestMapping(value = "/services")
 	String services();
 
-	@GetMapping("/instances")
+	@RequestMapping(value = "/instances")
 	String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId);
 
-	@GetMapping("/hello")
+	@RequestMapping(value = "/hello")
 	String hello();
 
 }
