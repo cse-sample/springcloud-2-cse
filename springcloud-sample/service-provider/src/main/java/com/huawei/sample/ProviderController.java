@@ -24,12 +24,12 @@ public class ProviderController {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	@RequestMapping("/hello/{name}")
+	@RequestMapping(value = "/hello/{name}")
 	public String hello(@PathVariable String name) {
 		return "hello " + name;
 	}
 
-	@RequestMapping("/services")
+	@RequestMapping(value = "/services")
 	public String services() {
 		List<String> services = discoveryClient.getServices();
 
@@ -38,7 +38,7 @@ public class ProviderController {
 		return "services: " + services;
 	}
 
-	@RequestMapping("/instances")
+	@RequestMapping(value = "/instances")
 	public String instance(@RequestParam(value = "serviceId", required = false) String serviceId) {
 		if (serviceId == null)
 			serviceId = registration.getServiceId();
