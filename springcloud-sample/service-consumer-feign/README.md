@@ -27,22 +27,11 @@ Spring Cloud为Feign增加了对Spring MVC注解的支持，整合了Ribbon和Eu
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ConsumerApplication {
-
-	@Bean
-	@LoadBalanced
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
-	@Bean
-	@LoadBalanced
-	public AsyncRestTemplate asyncRestTemplate() {
-		return new AsyncRestTemplate();
-	}
+@EnableFeignClients
+public class EurekaConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConsumerApplication.class, args);
+		SpringApplication.run(EurekaConsumerApplication.class, args);
 	}
 }
 ```
