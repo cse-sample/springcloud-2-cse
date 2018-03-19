@@ -1,18 +1,19 @@
-## 创建服务消费者--使用Ribbon
+## 创建服务消费者--使用Ribbon实现客户端负载均衡
 
-Ribbon是一个客户端负载均衡的组件
- * 和Eureka完美整合
+Ribbon是一个客户端负载均衡的组件，它不像服务注册中心、配置中心、API网关等其他SpringCloud组件那样独立部署，Ribbon必须和微服务集成在一起运行。
+ * 和Eureka整合，从Eureka注册中心中获取服务端列表
  * 支持多种协议-HTTP,TCP,UDP
  * caching/batching
  * built in failure resiliency
  
- 这里我们使用Ribbon with Eureka来消费服务提供者的接口
+ Spring Cloud有两种服务调用方式，一种是Ribbon + RestTemplate，另一种是Feign。
+ 这里我们使用Ribbon + Rest with Eureka来消费服务提供者的接口
 
 ### 1.创建工程添加依赖
 
 依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Ribbon类型的工程，工程名称为service-consumer-ribbon。
 
-简单的做法是在service-consumer工程基础上改造，首先在pom.xml追加ribbon依赖
+另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加ribbon依赖
 
 ```xml
 	<dependency>
@@ -23,7 +24,7 @@ Ribbon是一个客户端负载均衡的组件
 
 ### 2.添加@LoadBalanced来开启负载均衡能力
 
-初始化RestTemplate 与 AsyncRestTemplate这两个客户端时添加@LoadBalanced来开启负载均衡能力。
+初始化RestTemplate 与 AsyncRestTemplate这两个客户端时，添加@LoadBalanced来开启负载均衡能力。
 
 ```Java
 @SpringBootApplication
@@ -48,7 +49,7 @@ public class ConsumerApplication {
 }
 ```
 
-为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个客户端调用服务提供者接口：
+为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个Rest客户端调用服务提供者接口：
 
 ```Java
 @RestController
