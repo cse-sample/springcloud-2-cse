@@ -9,7 +9,7 @@ Spring Cloud为Feign增加了对Spring MVC注解的支持，整合了Ribbon和Eu
 
 ### 1.创建工程添加依赖
 
-依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建包含Feign组件的工程，工程名称为service-consumer-feign。
+依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discovery”，“Feign”组件，工程名称为service-consumer-feign。
 
 另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加feign依赖
 
