@@ -43,7 +43,7 @@ public class ConsumerApplication {
 @FeignClient("service-provider")
 public interface ConsumerFeignClient {
 
-        @GetMapping("/hello/{name}")
+        @RequestMapping("/hello/{name}")
 	public String hello(@PathVariable String name);
 }
 ```
@@ -52,11 +52,16 @@ public interface ConsumerFeignClient {
 
 为服务增加一个简单的接口, 通过上面定义的Feign客户端ConsumerFeignClient来消费服务提供者接口, 代码如下：
 ```Java
-@FeignClient("service-provider")
-public interface ConsumerFeignClient {
+@RestController
+public class ConsumerController {
 
-        @GetMapping("/hello/{name}")
-	public String hello(@PathVariable String name);
+	@Autowired
+	private ConsumerFeignClient consumerFeignClient;
+
+        @RequestMapping("/hello/{name}")
+	public String hello(@PathVariable String name) {
+		return consumerFeignClient.hello(name);
+	}
 }
 ```
 
