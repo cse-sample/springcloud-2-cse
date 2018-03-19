@@ -20,15 +20,15 @@ Spring Cloud为Feign增加了对Spring MVC注解的支持，整合了Ribbon和Eu
 	</dependency>
 ```
 
-### 2.添加@LoadBalanced来开启负载均衡能力
+### 2.添加@EnableFeignClients注解开启Feign的功能
 
-初始化RestTemplate 与 AsyncRestTemplate这两个客户端时，添加@LoadBalanced来开启负载均衡能力。
+在程序的启动类ServiceFeignApplication ，加上@EnableFeignClients注解开启Feign的功能添加@LoadBalanced来开启负载均衡能力。
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class EurekaConsumerApplication {
+public class ConsumerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaConsumerApplication.class, args);
