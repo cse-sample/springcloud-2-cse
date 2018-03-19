@@ -11,7 +11,7 @@ Ribbon是一个客户端负载均衡的组件，它不像服务注册中心、�
 
 ### 1.创建工程添加依赖
 
-依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Ribbon类型的工程，工程名称为service-consumer-ribbon。
+依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discovery”，“Ribbon”组件，工程名称为service-consumer-ribbon。
 
 另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加ribbon依赖
 
