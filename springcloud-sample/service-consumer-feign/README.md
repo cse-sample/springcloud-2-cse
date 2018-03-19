@@ -47,6 +47,18 @@ public interface ConsumerFeignClient {
 	public String hello(@PathVariable String name);
 }
 ```
+* 使用@FeignClient("service-service")注解来绑定该接口对应名称为service-provider的服务
+* 通过Spring MVC的注解来配置service-provider服务下的具体实现
+
+为服务增加一个简单的接口, 通过上面定义的Feign客户端ConsumerFeignClient来消费服务提供者接口, 代码如下：
+```Java
+@FeignClient("service-provider")
+public interface ConsumerFeignClient {
+
+        @GetMapping("/hello/{name}")
+	public String hello(@PathVariable String name);
+}
+```
 
 ### 3.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
@@ -66,9 +78,6 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ### 4.启动应用
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-FEIGN服务实例记录
 
-访问[http://localhost:7092/hello-sync/springcloud](http://localhost:7092/hello-sync/springcloud)，同步方式调用服务/hello接口
-
-访问[http://localhost:7092/hello-async/springcloud](http://localhost:7092/hello-async/springcloud)，异步方式调用服务/hello接口
-
+访问[http://localhost:7093/hello/springcloud](http://localhost:7093/hello/springcloud)，调用服务/hello接口
