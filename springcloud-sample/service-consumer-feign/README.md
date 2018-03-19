@@ -36,33 +36,16 @@ public class ConsumerApplication {
 }
 ```
 
-为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个Rest客户端调用服务提供者接口：
+定义一个Feign接口，通过@FeignClient("服务名")，来指定调用哪个服务。
+比如在代码中调用了service-provider服务的“/hello”接口，代码如下：
 
 ```Java
-@RestController
-public class ConsumerController {
+@FeignClient("service-provider")
+public interface ConsumerFeignClient {
 
-	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired 
-	private AsyncRestTemplate asyncRestTemplate;
-
-	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
-		String url = "http://service-provider/hello/" + name;
-
-		return restTemplate.getForObject(url, String.class);
-	}
-	
-	@RequestMapping("/hello-async/{name}")
-	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
-		String url = "http://service-provider/hello/" + name;
-		
-		ListenableFuture<ResponseEntity<String>> future = asnycRestTemplate.getForEntity(url, String.class);
-		return future.get().getBody();
-	}
-}	
+        @GetMapping("/hello/{name}")
+	public String hello(@PathVariable String name);
+}
 ```
 
 ### 3.修改应用配置
