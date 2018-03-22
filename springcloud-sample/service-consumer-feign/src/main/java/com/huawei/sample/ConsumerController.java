@@ -14,7 +14,7 @@ public class ConsumerController {
 	@Autowired
 	private ConsumerFeignClient consumerFeignClient;
 
-        @RequestMapping("/hello/{name}")
+    @RequestMapping("/hello/{name}")
 	public String hello(@PathVariable String name) {
 		return consumerFeignClient.hello(name);
 	}

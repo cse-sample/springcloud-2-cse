@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaConsumerApplication {
+public class ConsumerApplication {
 
 	@Bean
 	public RestTemplate restTemplate() {
@@ -22,6 +22,6 @@ public class EurekaConsumerApplication {
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaConsumerApplication.class, args);
+		SpringApplication.run(ConsumerApplication.class, args);
 	}
 }

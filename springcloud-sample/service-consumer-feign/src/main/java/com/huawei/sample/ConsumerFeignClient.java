@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("service-provider")
 public interface ConsumerFeignClient {
 
-        @RequestMapping(value = "/hello/{name}")
+    @RequestMapping(value = "/hello/{name}")
 	public String hello(@PathVariable String name);
 	
 	@RequestMapping(value = "/services")

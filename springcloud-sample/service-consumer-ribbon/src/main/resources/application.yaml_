@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka-consumer-ribbon
+    name: service-consumer-ribbon
     
 server:
   port: 7092
