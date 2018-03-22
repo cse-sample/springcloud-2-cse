@@ -31,7 +31,7 @@ public class ConsumerController {
 	private LoadBalancerClient loadBalancerClient;
 
 	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
+	public String syncHello(@PathVariable("name") String name) {
 		
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
@@ -43,7 +43,7 @@ public class ConsumerController {
 	}
 	
 	@RequestMapping("/hello-async/{name}")
-	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
+	public String asyncHello(@PathVariable("name") String name) throws InterruptedException, ExecutionException {
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
 		String url = serviceInst.getUri() + "/hello/" + name;

@@ -26,7 +26,7 @@ public class ConsumerController {
 	private AsyncRestTemplate asnycRestTemplate;
 
 	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
+	public String syncHello(@PathVariable("name") String name) {
 		String url = "http://service-provider/hello/" + name;
 		
 		LOGGER.info("url: " + url);

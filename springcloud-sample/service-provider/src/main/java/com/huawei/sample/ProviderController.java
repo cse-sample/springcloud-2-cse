@@ -25,7 +25,7 @@ public class ProviderController {
 	private DiscoveryClient discoveryClient;
 
 	@RequestMapping("/hello/{name}")
-	public String hello(@PathVariable String name) {
+	public String hello(@PathVariable("name") String name) {
 		return "hello " + name;
 	}
 
