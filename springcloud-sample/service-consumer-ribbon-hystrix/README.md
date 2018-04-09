@@ -99,7 +99,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON服务实例记录
 
-访问[http://localhost:7092/ribbon-hystrix/hello-sync/springcloud](http://localhost:7092/ribbon-hystrix/hello-sync/springcloud)，同步方式调用服务/hello接口
+访问[http://localhost:7094/ribbon-hystrix/hello-sync/springcloud](http://localhost:7094/ribbon-hystrix/hello-sync/springcloud)，同步方式调用服务/hello接口
 
-访问[http://localhost:7092/ribbon-hystrix/hello-async/springcloud](http://localhost:7092/ribbon-hystrix/hello-async/springcloud)，异步方式调用服务/hello接口
+访问[http://localhost:7094/ribbon-hystrix/hello-async/springcloud](http://localhost:7094/ribbon-hystrix/hello-async/springcloud)，异步方式调用服务/hello接口
 
