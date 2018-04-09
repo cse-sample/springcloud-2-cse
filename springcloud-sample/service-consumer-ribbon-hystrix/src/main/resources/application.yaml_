@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-consumer-ribbon-hystrix
+    
+server:
+  port: 7094
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+      
+logging:
+  file: ${spring.application.name}.log
