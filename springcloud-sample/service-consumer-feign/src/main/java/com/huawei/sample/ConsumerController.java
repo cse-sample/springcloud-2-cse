@@ -19,7 +19,7 @@ public class ConsumerController {
 	public String hello(@PathVariable("name") String name) {
 		return consumerFeignClient.hello(name);
 	}
-		
+
 	@RequestMapping("/consumer/services")
 	public String services() {
 		return consumerFeignClient.services();
