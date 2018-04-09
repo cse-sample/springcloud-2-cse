@@ -13,4 +13,6 @@
 | service-consume-feign           | 服务消费者-Feign      | 7093      | /hello/xxx    |
 | service-consume-ribbon-hystrix  | 服务消费者-Ribbon     | 7094      | /hello/xxx    |
 | service-consume-feign-hystrix   | 服务消费者-Feign      | 7095      | /hello/xxx    |
-
+| config-server                   | 配置服务中心          | 7095      | /hello/xxx    |
+| config-client                   | 配置服务客户端         | 7095      | /hello/xxx    |
+| api-gateway-zuul                | 网关-API GateWay      | 8080      | /hello/xxx    |
