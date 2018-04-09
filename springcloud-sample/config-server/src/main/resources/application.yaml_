@@ -1,0 +1,21 @@
+spring:
+  application:
+    name:config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cse-sample/config-repo
+          search-paths: repo
+          username: 83488245@qq.com
+          password: Java1234
+
+server:
+  port: 7061
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+
+logging.file: ${spring.application.name}.log

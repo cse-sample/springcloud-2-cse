@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka-consumer-feign-hystrix
+
+server:
+  port: 7095
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+
+logging:
+  file: ${spring.application.name}.log
