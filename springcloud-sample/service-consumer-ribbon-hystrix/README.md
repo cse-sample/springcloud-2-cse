@@ -83,9 +83,9 @@ public class ConsumerController {
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=service-consumer-ribbon
+spring.application.name=service-consumer-ribbon-hystrix
 
-server.port=7092
+server.port=7094
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
