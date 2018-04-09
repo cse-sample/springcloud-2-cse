@@ -4,6 +4,8 @@
 
 ### 服务规划简介
 
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/design.png)
+
 | 微服务工程名                     | 描述                 | 端口号     | 接口          |
 | ------------------------------- | -------------------- | --------- | ------------- |
 | api-gateway-zuul                | 网关-API GateWay     | 8080      | /hello/xxx    |
