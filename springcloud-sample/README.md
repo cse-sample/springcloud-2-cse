@@ -1,8 +1,22 @@
 ### 项目简介
 一个基于SpringCloud的微服务完整示例
 
+### 环境
+JDK1.8
+Maven 3.3+
+Eclipse 或 IDEA
 
-### 服务规划简介
+### 技术栈
+| 微服务工程名     | 描述              | 
+| ----------------| ---------------- | 
+| 配置服务         | Config Server    |
+| 注册中心         | Eureka Server    |
+| 服务发现         | Eureka Client    |
+| 负载均衡         | Ribbon           |
+| 弹性与熔断       | Hystrix          |
+| API Gateway     | Zuul             |
+
+### 服务规划
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/design.png)
 
