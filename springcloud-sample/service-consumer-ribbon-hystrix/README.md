@@ -44,8 +44,9 @@ public class ConsumerApplication {
 	}
 }
 ```
+### 3.服务方法上添加@HystrixCommand注解
 
-为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个Rest客户端调用服务提供者接口：
+在syncHello, asyncHello方法上加上@HystrixCommand注解，对添加了注解的方法插入熔断器的功能，并指定了fallbackMethod熔断方法。
 
 ```Java
 @RestController
@@ -75,7 +76,7 @@ public class ConsumerController {
 }	
 ```
 
-### 3.修改应用配置
+### 4.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
@@ -93,9 +94,13 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ### 4.启动应用
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON-HYSTRIX服务实例记录
 
-访问[http://localhost:7094/ribbon-hystrix/hello-sync/springcloud](http://localhost:7094/ribbon-hystrix/hello-sync/springcloud)，同步方式调用服务/hello接口
+访问[http://localhost:7094/ribbon-hystrix/hello-sync/springcloud](http://localhost:7094/ribbon-hystrix/hello-sync/springcloud)，同步方式调用服务/hello接口，返回：
 
-访问[http://localhost:7094/ribbon-hystrix/hello-async/springcloud](http://localhost:7094/ribbon-hystrix/hello-async/springcloud)，异步方式调用服务/hello接口
+hello springcloud
+
+停掉service-provider服务，再次调用上面的接口，返回：
+
+fallback springcloud
 
