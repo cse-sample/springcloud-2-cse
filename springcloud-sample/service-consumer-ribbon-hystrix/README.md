@@ -57,8 +57,7 @@ public class ConsumerService {
 	@Autowired
 	private AsyncRestTemplate asnycRestTemplate;
 
-	@HystrixCommand(commandProperties = {
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000") }, fallbackMethod = "fallback")
+	@HystrixCommand(fallbackMethod = "fallback")
 	public String syncHello(String name) {
 		String url = "http://service-provider/hello/" + name;
 
