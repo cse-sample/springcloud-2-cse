@@ -1,34 +1,30 @@
-## 创建服务消费者--使用Ribbon实现客户端负载均衡
+## 创建服务消费者--Ribbon+RestTemplate和Hystrix的结合
 
-Ribbon是一个客户端负载均衡的组件，它不像服务注册中心、配置中心、API网关等其他SpringCloud组件那样独立部署，Ribbon必须和微服务集成在一起运行。
- * 和Eureka整合，从Eureka注册中心中获取服务端列表
- * 支持多种协议-HTTP,TCP,UDP
- * caching/batching
- * built in failure resiliency
- 
- Spring Cloud有两种服务调用方式，一种是Ribbon + RestTemplate，另一种是Feign。
- 这里我们使用Ribbon + Rest with Eureka来消费服务提供者的接口
+Hystrix是一个帮助解决分布式系统交互时超时处理和容错的类库。
 
-### 1.创建工程添加依赖
+基于微服务构造的分布式系统，被分层解耦为诸多存在调用依赖关系的微服务，一个请求需要调用多个微服务是非常常见。较底层的服务如果出现故障，会连锁传导到依赖他的上层服务，并逐渐扩散到影响整个系统，发生“雪崩”效应。为了解决这个问题，业界提出了断路器模型，当对特定的服务的调用的不可用达（错误或超时）到一个阀值（比如5秒20次）断路器将会被打开，避免连锁故障，fallback方法降级直接返回一个固定值。
 
-依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discovery”，“Ribbon”组件，工程名称为service-consumer-ribbon。
 
-另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加ribbon依赖
+
+Hystrix就是用来解决这类问题的。
+
+### 1.添加依赖
+
+在service-consumer-ribbon工程基础上改造，copy后修改工程名称，然后在pom.xml追加Hystrix依赖
 
 ```xml
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-ribbon</artifactId>
-	</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
 ```
 
-### 2.添加@LoadBalanced来开启负载均衡能力
-
-初始化RestTemplate 与 AsyncRestTemplate这两个客户端时，添加@LoadBalanced来开启负载均衡能力。
+### 2.添加@EnableHystrix注解开启Hystrix
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableCircuitBreaker
 public class ConsumerApplication {
 
 	@Bean
