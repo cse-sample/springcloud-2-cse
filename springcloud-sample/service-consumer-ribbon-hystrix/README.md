@@ -91,16 +91,15 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
-### 4.启动应用
+### 5.启动应用
 直接运行ConsumerApplication的main函数
 
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-RIBBON-HYSTRIX服务实例记录
 
-访问[http://localhost:7094/ribbon-hystrix/hello-sync/springcloud](http://localhost:7094/ribbon-hystrix/hello-sync/springcloud)，同步方式调用服务/hello接口，返回：
+访问[http://localhost:7094/ribbon-hystrix/hello-sync/springcloud](http://localhost:7094/ribbon-hystrix/hello-sync/springcloud)，返回：
 
 hello springcloud
 
 停掉service-provider服务，再次调用上面的接口，返回：
 
 fallback springcloud
-
