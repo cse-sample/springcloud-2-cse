@@ -8,7 +8,7 @@ Hystrix就是用来解决这类问题的。
 
 ### 1.开启Hystrix
 
-在service-consumer-feign工程基础上改造，Feign是自带断路器的，需要在配置文件中配置打开它，在配置文件加以下代码：
+在service-consumer-feign工程基础上改造，Feign是自带断路器的，不用配置POM依赖，只需要在配置文件中打开它：
 
 ```
     feign.hystrix.enabled=true
