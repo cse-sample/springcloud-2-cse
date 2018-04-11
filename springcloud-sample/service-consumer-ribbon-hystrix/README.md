@@ -49,30 +49,34 @@ public class ConsumerApplication {
 在syncHello, asyncHello方法上加上@HystrixCommand注解，对添加了注解的方法插入熔断器的功能，并指定了fallbackMethod熔断方法。
 
 ```Java
-@RestController
-@RequestMapping("/ribbon-hystrix")
-public class ConsumerController {
-
+@Service
+public class ConsumerService {
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	@Autowired 
-	private AsyncRestTemplate asyncRestTemplate;
 
-	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
+	@Autowired
+	private AsyncRestTemplate asnycRestTemplate;
+
+	@HystrixCommand(commandProperties = {
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000") }, fallbackMethod = "fallback")
+	public String syncHello(String name) {
 		String url = "http://service-provider/hello/" + name;
 
 		return restTemplate.getForObject(url, String.class);
 	}
-	
-	@RequestMapping("/hello-async/{name}")
-	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
+
+	@HystrixCommand(fallbackMethod = "fallback")
+	public String asyncHello(String name) throws InterruptedException, ExecutionException {
 		String url = "http://service-provider/hello/" + name;
-		
+
 		ListenableFuture<ResponseEntity<String>> future = asnycRestTemplate.getForEntity(url, String.class);
 		return future.get().getBody();
 	}
+
+	public String fallback(String name) {
+		return "fallback " + name;
+	}
+
 }	
 ```
 
