@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-provider
+
+server:
+  port: 7081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+      
+logging:
+  file: ${spring.application.name}.log
