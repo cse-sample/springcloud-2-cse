@@ -1,8 +1,10 @@
 package com.huawei.sample;
 
 import org.apache.log4j.Logger;
+import org.apache.servicecomb.serviceregistry.RegistryUtils;
+import org.apache.servicecomb.serviceregistry.api.registry.Microservice;
+import org.apache.servicecomb.serviceregistry.api.registry.MicroserviceInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +20,7 @@ public class ProviderController {
 
     private static final Logger LOGGER = Logger.getLogger(ProviderController.class);
 
-    @Autowired
+    //@Autowired
     private Registration registration;
 
     @Autowired
@@ -40,19 +42,25 @@ public class ProviderController {
 
     @RequestMapping("/instances")
     public String instance(@RequestParam(value = "serviceId", required = false) String serviceId) {
-        if (serviceId == null)
-            serviceId = registration.getServiceId();
-        List<ServiceInstance> insts = discoveryClient.getInstances(serviceId);
+
+        List<MicroserviceInstance> insts;
+        Microservice microservice = RegistryUtils.getMicroservice();
+        String versionRule = "0.0+";
+        if (serviceId == null) {
+            serviceId = microservice.getServiceName();
+            versionRule = microservice.getVersion();
+        }
+        insts = RegistryUtils.findServiceInstance(microservice.getAppId(), serviceId, versionRule);
+
 
         if (insts == null || insts.isEmpty()) {
             LOGGER.warn(serviceId + " has no service instance.");
         }
 
         insts.forEach(serviceInst -> {
-            LOGGER.info("service instance, host " + serviceInst.getUri());
+            LOGGER.info("service instance, host " + serviceInst.getEndpoints());
         });
 
-        return serviceId + "  instance : " + insts.stream().map(inst -> inst.getUri()).collect(Collectors.toList());
+        return serviceId + "  instance : " + insts.stream().map(inst -> inst.getEndpoints().toString()).collect(Collectors.toList());
     }
-
 }
