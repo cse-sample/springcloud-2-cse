@@ -8,7 +8,7 @@
 
 
 
-- 删除spring-cloud-starter-eureka-server依赖，增加为spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
@@ -20,7 +20,7 @@
 	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
-- dependencyManagement中增加cse-dependency，方便管理三方件
+- dependencyManagement中增加cse-dependency，方便管理三方件。可根据需求选择不同CSE版本，当前最新为2.3.12。
 
 ```xml
 <dependencyManagement>

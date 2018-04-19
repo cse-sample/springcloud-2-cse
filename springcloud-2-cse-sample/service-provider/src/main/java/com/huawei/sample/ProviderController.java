@@ -61,6 +61,7 @@ public class ProviderController {
             LOGGER.info("service instance, host " + serviceInst.getEndpoints());
         });
 
-        return serviceId + "  instance : " + insts.stream().map(inst -> inst.getEndpoints().toString()).collect(Collectors.toList());
+        return serviceId + "  instance : "
+                + insts.stream().map(inst -> inst.getEndpoints().toString()).collect(Collectors.toList());
     }
 }
