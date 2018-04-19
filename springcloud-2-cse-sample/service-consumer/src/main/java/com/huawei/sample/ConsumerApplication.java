@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ImportResource(locations = "classpath*:META-INF/spring/*.bean.xml")
-@RibbonClient(name = "service-provider", configuration = ConsumerRibbonConfig.class)
 public class ConsumerApplication {
 
     @Bean

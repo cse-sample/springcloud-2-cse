@@ -5,9 +5,6 @@
 
 ### 1.修改pom文件
 
-
-
-
 - 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
@@ -69,23 +66,21 @@
 </dependency>
 ```
 
-### 2.重载Spring Cloud服务实例列表的维护机制
-实现 `com.netflix.loadbalancer.ServerList` 接口，从CSE服务中心获取微服务列表。新增 `ConsumerRibbonConfig.java`，内容如下：
-```Java
-public class ConsumerRibbonConfig {
-    @Bean
-    ServerList<Server> ribbonServerList(IClientConfig config) {
-        ServiceCombServerList serverList = new ServiceCombServerList();
-        serverList.initWithNiwsConfig(config);
-        return serverList;
-    }
-}
+### 2.自定义RibbonClient
+采用CSE服务实例清单的维护机制，需要替代Ribbon默认的负载均衡策略，可以通过配置文件来自定义RibbonClient。
+修改 application.propertie或application.yaml，增加如下配置：
+
 ```
+service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList
+```
+其中：
+
+* service-provider.ribbon.NIWSServerListClassName: RibbonClient的配置规则，<服务名>.ribbon.<类型>
+* org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList: CSE服务实例清单的维护机制
 
 ### 3.启用服务注册和发现
 
-在原 ProviderApplication.java 中增加<html>@ImportResource</html>，自动注入CSE依赖Bean。增加<html>@RibbonClient</html>，显式获取服务提供者的实例信息。
-
+在原 ProviderApplication.java 中增加<html>@ImportResource</html>，自动注入CSE依赖Bean。
 
 ```Java
 package com.huawei.sample;
@@ -102,7 +97,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ImportResource(locations = "classpath*:META-INF/spring/*.bean.xml")
-@RibbonClient(name = "service-provider", configuration = ConsumerRibbonConfig.class)
 public class ConsumerApplication {
 
     @Bean
@@ -120,9 +114,6 @@ public class ConsumerApplication {
     }
 }
 ```
-其中：
-
-* @RibbonClient(name = "<font color=red>service-provider</font>", configuration = ConsumerRibbonConfig.class): service-provider为Provider微服务名称。如果存在多个Provider，可采用@RibbonClients。
 
 ### 4.修改应用配置
 src/main/resources下增加微服务描述文件microservice.yaml，如下配置：
