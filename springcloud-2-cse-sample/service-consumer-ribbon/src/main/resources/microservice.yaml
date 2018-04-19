@@ -1,0 +1,22 @@
+cse-config-order: 100
+APPLICATION_ID: springcloud-2-cse-sample
+service_description:
+  name: service-consumer-ribbon
+  version: 0.0.1
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:7071
+      instance:
+        watch: false
+#  config:
+#    client:
+#      serverUri: https://cse.cn-north-1.myhwclouds.com:443
+#      refreshMode: 1
+#      refresh_interval: 15000
+  rest:
+    address: 0.0.0.0:7092 # 7092端口与src/main/resources/application.yml中server.port保持一致
+  credentials:
+    accessKey: your access key in CSE
+    secretKey: your secret key in CSE
+    akskCustomCipher: default

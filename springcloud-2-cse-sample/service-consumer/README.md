@@ -69,7 +69,7 @@
 </dependency>
 ```
 
-### 2.重载Spring Cloud服务列表实现
+### 2.重载Spring Cloud服务实例列表的维护机制
 实现 `com.netflix.loadbalancer.ServerList` 接口，从CSE服务中心获取微服务列表。新增 `ConsumerRibbonConfig.java`，内容如下：
 ```Java
 public class ConsumerRibbonConfig {
@@ -122,7 +122,7 @@ public class ConsumerApplication {
 ```
 其中：
 
-* @RibbonClient(name = "<font color=red>service-provider</font>", configuration = ConsumerRibbonConfig.class): service-provider为Provider微服务名称
+* @RibbonClient(name = "<font color=red>service-provider</font>", configuration = ConsumerRibbonConfig.class): service-provider为Provider微服务名称。如果存在多个Provider，可采用@RibbonClients。
 
 ### 4.修改应用配置
 src/main/resources下增加微服务描述文件microservice.yaml，如下配置：
