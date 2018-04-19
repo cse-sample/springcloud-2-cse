@@ -46,7 +46,7 @@ public class ProviderController {
         List<MicroserviceInstance> insts;
         Microservice microservice = RegistryUtils.getMicroservice();
         String versionRule = "0.0+";
-        if (serviceId == null) {
+        if (serviceId == null || serviceId.isEmpty()) {
             serviceId = microservice.getServiceName();
             versionRule = microservice.getVersion();
         }

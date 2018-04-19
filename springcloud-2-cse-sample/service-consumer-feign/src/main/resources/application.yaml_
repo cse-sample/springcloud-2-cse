@@ -19,3 +19,7 @@ feign:
 
 logging:
   file: ${spring.application.name}.log
+
+service-provider:
+  ribbon:
+    NIWSServerListClassName: org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList
