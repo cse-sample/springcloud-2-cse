@@ -1,7 +1,6 @@
 ## 服务消费者接入CSE
 
-这里我们基于Eureka Client创建一个服务消费者服务，演示如何接入CSE
-详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)
+这里我们基于Eureka Client创建一个服务消费者服务，演示如何接入CSE。详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)
 
 ### 1.修改pom文件
 
@@ -80,20 +79,9 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 
 ### 3.启用服务注册和发现
 
-在原 ProviderApplication.java 中增加<html>@ImportResource</html>，自动注入CSE依赖Bean。
+在原 ConsumerApplication.java 中增加<html>@ImportResource</html>，自动注入CSE依赖Bean。
 
 ```Java
-package com.huawei.sample;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.web.client.AsyncRestTemplate;
-import org.springframework.web.client.RestTemplate;
-
 @SpringBootApplication
 @EnableDiscoveryClient
 @ImportResource(locations = "classpath*:META-INF/spring/*.bean.xml")
