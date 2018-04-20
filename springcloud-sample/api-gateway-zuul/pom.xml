@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>api-gateway-zuul</name>
-	<description>Spring Cloud Eureka Client Consumer</description>
+	<description>Spring Cloud Zuul API Gateway</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
