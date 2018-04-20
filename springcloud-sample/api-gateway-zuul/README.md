@@ -1,6 +1,8 @@
-## 创建服务消费者
+## 创建服务网管API Gateway
 
-这里我们基于Eureka Client创建一个服务消费者服务。
+Zuul是Netflix基于JVM的路由器和服务器端负载均衡器，主要功能包括：反向代理，智能路由，权限校验等。Zuul默认集成了Ribbon来定位一个通过发现转发的实例
+
+Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务。这里我们基于Netflix Zuul创建一个服务网关。
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
