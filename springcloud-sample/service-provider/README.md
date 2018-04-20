@@ -87,7 +87,7 @@ public class ProviderController {
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=eureka-provider
+spring.application.name=service-provider
 
 server.port=7081
 
