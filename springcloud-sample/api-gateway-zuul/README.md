@@ -90,8 +90,11 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
 配置路由：
+```
 zuul.routes.service-provider.path=/hello/**
+
 zuul.routes.service-provider.stripPrefix=false
+```
 
 ### 4.启动应用
 直接运行ZuulApiGatewayApplication的main函数
