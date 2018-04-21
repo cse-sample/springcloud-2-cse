@@ -18,3 +18,4 @@ springcloud-2-cse-sample/pom.xml
 /springcloud-2-cse-sample/local-service-center-2.2.47/data
 springcloud-2-cse-sample/*.log
 springcloud-2-cse-sample/*.log.*
+/local-service-center-2.2.47
