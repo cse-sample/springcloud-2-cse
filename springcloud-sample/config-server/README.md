@@ -1,4 +1,4 @@
-## 创建服务注册中心
+## 创建服务配置中心
 
 Eureka提供云端服务发现，以实现云端中间层服务自动发现和故障转移。
 Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细分为 Eureka Server, Eureka Client。
@@ -104,4 +104,6 @@ spring.cloud.config.server.git.password: your paasword
 
 ### 4.启动服务配置中心
 直接运行ConfigServerApplication的main函数，启动Config Server。
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条CONGIG-PROVIDER服务实例记录
+
+访问[http://localhost:7061/](http://localhost:7061/)，
