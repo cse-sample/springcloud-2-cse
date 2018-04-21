@@ -61,7 +61,9 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 
 ### 2.启用服务网关功能
 
-修改ZuulApiGatewayApplication.java，增加@EnableZuulProxy注解表明应用开启服务网关功能
+修改ZuulApiGatewayApplication.java：
+
+增加@EnableZuulProxy注解，开启服务网关功能
 
 ```Java
 @SpringBootApplication
