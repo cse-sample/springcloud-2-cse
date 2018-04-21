@@ -17,6 +17,6 @@ cse:
   rest:
     address: 0.0.0.0:7062 # 7062端口与src/main/resources/application.yml中server.port保持一致
   credentials:
-    accessKey: YMZJRRKVZJFKVDOYA7RL
-    secretKey: g9Tb1wj90bDQ6Jws4f3dxA04gjYnN3dE1KHutnTG
+    accessKey: your access key in CSE
+    secretKey: your secret key in CSE
     akskCustomCipher: default
