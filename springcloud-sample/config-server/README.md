@@ -67,6 +67,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 修改ConfigServerApplication.java：
 
 增加@EnableConfigServer注解，启用配置服务
+
 增加@EnableDiscoveryClient注解，服务本身注册到Eureka服务注册中心
 
 ```Java
