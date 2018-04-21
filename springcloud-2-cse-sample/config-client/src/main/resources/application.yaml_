@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      profile: default
+      label: master
+      discovery:
+        enabled: true             # true对接注册中心配置服务,默认false
+        serviceId: config-server  # 指定对接注册中心的配置服务名称
+
+server:
+  port: 7062
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+
+logging.file: ${spring.application.name}.log
