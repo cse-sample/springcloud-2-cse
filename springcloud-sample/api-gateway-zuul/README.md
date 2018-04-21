@@ -8,7 +8,7 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 
 最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discover”，“Zuul”组件，工程名称为api-gateway-zuul。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_zuul_apigateway.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_zuul_apigate.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
