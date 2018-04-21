@@ -1,4 +1,4 @@
-## 创建服务网管API Gateway
+## 创建服务网关API Gateway
 
 Zuul是Netflix基于JVM的路由器和服务器端负载均衡器，主要功能包括：反向代理，智能路由，权限校验等。Zuul默认集成了Ribbon来定位一个通过发现转发的实例
 
@@ -6,13 +6,16 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discover”组件，工程名称为service-consumer。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discover”，“Zuul”组件，工程名称为api-gateway-zuul。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_discovery.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_zuul_apigateway.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
+<name>api-gateway-zuul</name>
+<description>Spring Cloud Zuul API Gateway</description>
+
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
@@ -32,7 +35,10 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
-
+        <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zuul</artifactId>
+        </dependency>
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-test</artifactId>
