@@ -62,9 +62,12 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 </dependencyManagement>
 ```
 
-### 2.启用Eureka Server
+### 2.启用Config Server
 
-在 ConfigServerApplication.java 上增加<html>@EnableEurekaServer</html>注解
+修改ConfigServerApplication.java：
+
+增加@EnableConfigServer注解，启用配置服务
+增加@EnableDiscoveryClient注解，服务本身注册到Eureka服务注册中心
 
 ```Java
 @SpringBootApplication
@@ -78,17 +81,18 @@ public class ConfigServerApplication {
 }
 ```
 ### 3.修改应用配置
-修改 application.propertie或application.yaml，增加如下配置：
+修改 application.propertie或application.yaml，设置服务器端口号和配置服务的对接的Git仓库
 
 ```
-spring.application.name=eureka-server
+spring.application.name=config-server
+server.port=7061
 
-server.port=7071
-eureka.instance.hostname=localhost
+eureka.client.serviceUrl.defaultZone: http://localhost:7071/eureka/
 
-eureka.client.register-with-eureka=false
-eureka.client.fetch-registry=false
-eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
+spring.cloud.config.server.git.uri: https://github.com/cse-sample/springcloud-2-cse
+spring.cloud.config.server.git.search-paths: springcloud-sample/config-repo
+spring.cloud.config.server.git.username: your username
+spring.cloud.config.server.git.password: your paasword
 ```
 其中：
 
@@ -98,6 +102,6 @@ eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 * eureka.client.fetchRegistry: 值为false无需注册自身
 * eureka.client.serviceUrl.defaultZone: 指明了应用的URL
 
-### 4.启动服务注册中心
-直接运行EurekaServerApplication的main函数，启动Eureka Server。
+### 4.启动服务配置中心
+直接运行ConfigServerApplication的main函数，启动Config Server。
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
