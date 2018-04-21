@@ -1,77 +1,86 @@
-## 创建服务消费者--使用Feign实现客户端负载均衡
+## 创建服务消费者--Feign和Hystrix的结合
 
-Feign是一个声明式的Java Http客户端，它使得编写Java HTTP客户端变得更加简单。
-我们只需要使用Feign来创建一个接口并用注解来配置它既可完成，它具备可插拔的注解支持，包括Feign注解和JAX-RS注解。
+Hystrix是一个帮助解决分布式系统交互时超时处理和容错的类库。
 
-Spring Cloud为Feign增加了对Spring MVC注解的支持，整合了Ribbon和Eureka，默认实现了负载均衡的效果。
+基于微服务构造的分布式系统，被分层解耦为诸多存在调用依赖关系的微服务，一个请求需要调用多个微服务是非常常见。较底层的服务如果出现故障，会连锁传导到依赖他的上层服务，并逐渐扩散到影响整个系统，发生“雪崩”效应。为了解决这个问题，业界提出了断路器模型，当对特定的服务的调用的不可用达（错误或超时）到一个阀值（比如5秒20次）断路器将会被打开，避免连锁故障，fallback方法降级直接返回一个固定值。
 
-这里我们使用Feign来消费服务提供者的接口。
+Hystrix就是用来解决这类问题的。
 
-### 1.创建工程添加依赖
+### 1.开启Hystrix
 
-依然可访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discovery”，“Feign”组件，工程名称为service-consumer-feign。
+在service-consumer-feign工程基础上改造，Feign是自带断路器的，不用配置POM依赖，只需要在配置文件中打开它：
 
-另一种简单的做法是在service-consumer工程基础上改造：copy后修改工程名称，然后在pom.xml追加feign依赖
-
-```xml
-<dependency>
-	<groupId>org.springframework.cloud</groupId>
-	<artifactId>spring-cloud-starter-feign</artifactId>
-</dependency>
+```
+    feign.hystrix.enabled=true
 ```
 
-### 2.添加@EnableFeignClients注解开启Feign的功能
-
-在程序的启动类ServiceFeignApplication ，加上@EnableFeignClients注解开启Feign的功能添加@LoadBalanced来开启负载均衡能力。
+### 2.添加@EnableHystrix注解开启Hystrix
 
 ```Java
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableCircuitBreaker
 public class ConsumerApplication {
 
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	@LoadBalanced
+	public AsyncRestTemplate asyncRestTemplate() {
+		return new AsyncRestTemplate();
+	}
+
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaConsumerApplication.class, args);
+		SpringApplication.run(ConsumerApplication.class, args);
 	}
 }
 ```
+### 3.服务方法上添加@HystrixCommand注解
 
-定义一个Feign接口，通过@FeignClient("服务名")，来指定调用哪个服务。
-比如在代码中调用了service-provider服务的“/hello”接口，代码如下：
+在syncHello, asyncHello方法上加上@HystrixCommand注解，对添加了注解的方法插入熔断器的功能，并指定了fallbackMethod熔断方法。
 
 ```Java
-@FeignClient("service-provider")
-public interface ConsumerFeignClient {
-
-        @RequestMapping("/hello/{name}")
-	public String hello(@PathVariable String name);
-}
-```
-* 使用@FeignClient("service-service")注解来绑定该接口对应名称为service-provider的服务
-* 通过Spring MVC的注解来配置service-provider服务下的具体实现
-
-为服务增加一个简单的接口, 通过上面定义的Feign客户端ConsumerFeignClient来消费服务提供者接口, 代码如下：
-```Java
-@RestController
-public class ConsumerController {
+@Service
+public class ConsumerService {
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Autowired
-	private ConsumerFeignClient consumerFeignClient;
+	private AsyncRestTemplate asnycRestTemplate;
 
-        @RequestMapping("/hello/{name}")
-	public String hello(@PathVariable String name) {
-		return consumerFeignClient.hello(name);
+	@HystrixCommand(fallbackMethod = "fallback")
+	public String syncHello(String name) {
+		String url = "http://service-provider/hello/" + name;
+
+		return restTemplate.getForObject(url, String.class);
 	}
-}
+
+	@HystrixCommand(fallbackMethod = "fallback")
+	public String asyncHello(String name) throws InterruptedException, ExecutionException {
+		String url = "http://service-provider/hello/" + name;
+
+		ListenableFuture<ResponseEntity<String>> future = asnycRestTemplate.getForEntity(url, String.class);
+		return future.get().getBody();
+	}
+
+	public String fallback(String name) {
+		return "fallback " + name;
+	}
+
+}	
 ```
 
-### 3.修改应用配置
+### 4.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=service-consumer-feign
+spring.application.name=service-consumer-feign-hystrix
 
-server.port=7093
+server.port=7095
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
@@ -80,9 +89,15 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
-### 4.启动应用
+### 5.启动应用
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-FEIGN服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-FEIGN-HYSTRIX服务实例记录
 
-访问[http://localhost:7093/hello/springcloud](http://localhost:7093/hello/springcloud)，调用服务/hello接口
+访问[http://localhost:7095/feign-hystrix/hello-sync/springcloud](http://localhost:7095/ribbon-hystrix/hello-sync/springcloud)，返回：
+
+hello springcloud
+
+停掉service-provider服务，再次调用上面的接口，返回：
+
+fallback springcloud

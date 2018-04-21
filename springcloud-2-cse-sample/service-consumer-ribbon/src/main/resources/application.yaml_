@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: service-consumer-ribbon
+    
+server:
+  port: 7092
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7071/eureka/
+      
+logging:
+  file: ${spring.application.name}.log
+
+service-provider:
+  ribbon:
+    NIWSServerListClassName: org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList

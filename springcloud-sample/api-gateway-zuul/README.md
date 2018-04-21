@@ -1,16 +1,21 @@
-## 创建服务消费者
+## 创建服务网关API Gateway
 
-这里我们基于Eureka Client创建一个服务消费者服务。
+Zuul是Netflix基于JVM的路由器和服务器端负载均衡器，主要功能包括：反向代理，智能路由，权限校验等。Zuul默认集成了Ribbon来定位一个通过发现转发的实例
+
+Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务。这里我们基于Netflix Zuul创建一个服务网关。
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discover”组件，工程名称为service-consumer。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择包含“Eureka Discover”，“Zuul”组件，工程名称为api-gateway-zuul。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_discovery.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_zuul_apigateway.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
+<name>api-gateway-zuul</name>
+<description>Spring Cloud Zuul API Gateway</description>
+
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
@@ -30,7 +35,10 @@
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
-
+        <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zuul</artifactId>
+        </dependency>
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-test</artifactId>
@@ -51,78 +59,28 @@
 </dependencyManagement>
 ```
 
-### 2.启用服务注册发现
+### 2.启用服务网关功能
 
-在 EurekaProviderApplication.java 上
-
-增加@EnableDiscoveryClient注解表明应用开启服务注册与发现功能，
-
-初始化RestTemplate 与 AsyncRestTemplate这两个客户端进行服务调用。
+修改ZuulApiGatewayApplication.java，增加@EnableZuulProxy注解表明应用开启服务网关功能
 
 ```Java
 @SpringBootApplication
-@EnableDiscoveryClient
-public class ConsumerApplication {
+@EnableZuulProxy
+public class ZuulApiGatewayApplication {
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
-	@Bean
-	public AsyncRestTemplate asyncRestTemplate() {
-		return new AsyncRestTemplate();
-	}
-	
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaConsumerApplication.class, args);
+		SpringApplication.run(ZuulApiGatewayApplication.class, args);
 	}
 }
-```
-
-为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个客户端调用服务提供者接口：
-
-```Java
-@RestController
-public class ConsumerController {
-
-	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired 
-	private AsyncRestTemplate asyncRestTemplate;
-
-	@Autowired
-	private LoadBalancerClient loadBalancerClient;
-
-	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
-
-		String url = serviceInst.getUri() + "/hello/" + name;
-
-		return restTemplate.getForObject(url, String.class);
-	}
-	
-	@RequestMapping("/hello-async/{name}")
-	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
-
-		String url = serviceInst.getUri() + "/hello/" + name;
-
-		ListenableFuture<ResponseEntity<String>> future = asyncRestTemplate.getForEntity(url, String.class);
-		return future.get().getBody();
-	}
-}	
 ```
 
 ### 3.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=service-consumer
+spring.application.name=api-gateway-zuul
 
-server.port=7091
+server.port=8080
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
@@ -131,12 +89,16 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
+配置路由：
+```
+zuul.routes.service-provider.path=/hello/**
+
+zuul.routes.service-provider.stripPrefix=false
+```
+
 ### 4.启动应用
-直接运行ConsumerApplication的main函数
+直接运行ZuulApiGatewayApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条ZUUL-API-GATEWAY服务实例记录
 
-访问[http://localhost:7091/hello-sync/springcloud](http://localhost:7091/hello-sync/springcloud)，同步方式调用服务/hello接口
-
-访问[http://localhost:7091/hello-async/springcloud](http://localhost:7091/hello-async/springcloud)，异步方式调用服务/hello接口
-
+访问[http://localhost:8080/hello/springcloud](http://localhost:8080/hello/springcloud)，调用API Gateway接口

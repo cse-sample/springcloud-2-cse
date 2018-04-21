@@ -40,7 +40,7 @@ public class ProviderController {
 
 	@RequestMapping("/instances")
 	public String instance(@RequestParam(value = "serviceId", required = false) String serviceId) {
-		if (serviceId == null)
+		if (serviceId == null || serviceId.isEmpty())
 			serviceId = registration.getServiceId();
 		List<ServiceInstance> insts = discoveryClient.getInstances(serviceId);
 

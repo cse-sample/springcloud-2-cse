@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>api-gateway-zuul</name>
-	<description>Spring Cloud Eureka Client Consumer</description>
+	<description>Spring Cloud Zuul API Gateway</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -30,10 +30,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zuul</artifactId>
-        </dependency>
+                <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-starter-zuul</artifactId>
+                </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
