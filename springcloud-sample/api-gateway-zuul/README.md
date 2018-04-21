@@ -74,49 +74,13 @@ public class ZuulApiGatewayApplication {
 }
 ```
 
-为服务增加一个简单的接口,  使用RestTemplate 与 AsyncRestTemplate这两个客户端调用服务提供者接口：
-
-```Java
-@RestController
-public class ConsumerController {
-
-	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired 
-	private AsyncRestTemplate asyncRestTemplate;
-
-	@Autowired
-	private LoadBalancerClient loadBalancerClient;
-
-	@RequestMapping("/hello-sync/{name}")
-	public String syncHello(@PathVariable String name) {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
-
-		String url = serviceInst.getUri() + "/hello/" + name;
-
-		return restTemplate.getForObject(url, String.class);
-	}
-	
-	@RequestMapping("/hello-async/{name}")
-	public String asyncHello(@PathVariable String name) throws InterruptedException, ExecutionException {
-		ServiceInstance serviceInst = loadBalancerClient.choose("eureka-provider");
-
-		String url = serviceInst.getUri() + "/hello/" + name;
-
-		ListenableFuture<ResponseEntity<String>> future = asyncRestTemplate.getForEntity(url, String.class);
-		return future.get().getBody();
-	}
-}	
-```
-
 ### 3.修改应用配置
 修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=service-consumer
+spring.application.name=api-gateway-zuul
 
-server.port=7091
+server.port=8080
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 ```
@@ -125,12 +89,13 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
+配置路由：
+zuul.routes.service-provider.path=/hello/**
+zuul.routes.service-provider.stripPrefix=false
+
 ### 4.启动应用
-直接运行ConsumerApplication的main函数
+直接运行ZuulApiGatewayApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条ZUUL-API-GATEWAY服务实例记录
 
-访问[http://localhost:7091/hello-sync/springcloud](http://localhost:7091/hello-sync/springcloud)，同步方式调用服务/hello接口
-
-访问[http://localhost:7091/hello-async/springcloud](http://localhost:7091/hello-async/springcloud)，异步方式调用服务/hello接口
-
+访问[http://localhost:8080/hello/springcloud](http://localhost:8080/hello/springcloud)，调用API Gateway接口
