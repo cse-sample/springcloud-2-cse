@@ -7,16 +7,13 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Config Server工程，工程名称为config-service。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Server工程，工程名称为eureka-service。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_config_server.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
-<name>config-server</name>
-<description>Spring Cloud Config Server</description>
-
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
@@ -34,18 +31,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 <dependencies>
 	<dependency>
 		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-config-server</artifactId>
-	</dependency>
-
-	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-eureka</artifactId>
-	</dependency>
-
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
+		<artifactId>spring-cloud-starter-eureka-server</artifactId>
 	</dependency>
 </dependencies>
 
@@ -62,37 +48,32 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 </dependencyManagement>
 ```
 
-### 2.启用Config Server
+### 2.启用Eureka Server
 
-修改ConfigServerApplication.java：
-
-增加@EnableConfigServer注解，启用配置服务
-增加@EnableDiscoveryClient注解，服务本身注册到Eureka服务注册中心
+在 EurekaSererApplication.java 上增加<html>@EnableEurekaServer</html>注解
 
 ```Java
 @SpringBootApplication
-@EnableConfigServer
-@EnableDiscoveryClient
-public class ConfigServerApplication {
+@EnableEurekaServer
+public class EurekaServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConfigServerApplication.class, args);
+		SpringApplication.run(EurekaServerApplication.class, args);
 	}
 }
 ```
 ### 3.修改应用配置
-修改 application.propertie或application.yaml，设置服务器端口号和配置服务的对接的Git仓库
+修改 application.propertie或application.yaml，增加如下配置：
 
 ```
-spring.application.name=config-server
-server.port=7061
+spring.application.name=eureka-server
 
-eureka.client.serviceUrl.defaultZone: http://localhost:7071/eureka/
+server.port=7071
+eureka.instance.hostname=localhost
 
-spring.cloud.config.server.git.uri: https://github.com/cse-sample/springcloud-2-cse
-spring.cloud.config.server.git.search-paths: springcloud-sample/config-repo
-spring.cloud.config.server.git.username: your username
-spring.cloud.config.server.git.password: your paasword
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+eureka.client.serviceUrl.defaultZone=http://0.0.0.0:${server.port}/eureka/
 ```
 其中：
 
@@ -102,6 +83,6 @@ spring.cloud.config.server.git.password: your paasword
 * eureka.client.fetchRegistry: 值为false无需注册自身
 * eureka.client.serviceUrl.defaultZone: 指明了应用的URL
 
-### 4.启动服务配置中心
-直接运行ConfigServerApplication的main函数，启动Config Server。
+### 4.启动服务注册中心
+直接运行EurekaServerApplication的main函数，启动Eureka Server。
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI 管理界面
