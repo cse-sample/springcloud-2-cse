@@ -7,13 +7,16 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
-最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Eureka Server工程，工程名称为eureka-service。
+最简单的方式是访问http://start.spring.io/ 进行项目的初始化，Switch to the full version，选择创建Config Server工程，工程名称为config-service。
 
-![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_eureka_server.png)
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-sample/images/Initializr_config_server.png)
 
 工程生成后在本地解压，导入到Eclipse中，可以看到工程pom.xml关键依赖已配置：
 
 ```xml
+<name>config-server</name>
+<description>Spring Cloud Config Server</description>
+
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
@@ -31,7 +34,18 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 <dependencies>
 	<dependency>
 		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-eureka</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
 	</dependency>
 </dependencies>
 
@@ -50,15 +64,16 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 2.启用Eureka Server
 
-在 EurekaSererApplication.java 上增加<html>@EnableEurekaServer</html>注解
+在 ConfigServerApplication.java 上增加<html>@EnableEurekaServer</html>注解
 
 ```Java
 @SpringBootApplication
-@EnableEurekaServer
-public class EurekaServerApplication {
+@EnableConfigServer
+@EnableDiscoveryClient
+public class ConfigServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EurekaServerApplication.class, args);
+		SpringApplication.run(ConfigServerApplication.class, args);
 	}
 }
 ```
