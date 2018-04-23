@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: zipkin-server
+
+server:
+  port: 7051
+
+logging.file: ${spring.application.name}.log
