@@ -1,6 +1,6 @@
 ## 创建服务配置客户端
 
-这里我们基于Config Client实现一个服务配置中心读取配置。
+这里我们基于Config Client实现从服务配置中心读取配置
 
 ### 1.创建服务配置Client工程
 
@@ -99,7 +99,7 @@ public class ConfigClientController {
 ```
 
 ### 5.修改应用配置
-修改 application.propertie或application.yaml，设置服务器端口号和配置服务的对接的Git仓库
+修改 application.properties或application.yaml
 
 ```
 spring.application.name=config-client
@@ -109,15 +109,17 @@ server.port=7062
 
 eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 
-# 环境
+# 环境指定为dev
 spring.cloud.config.profile=dev
-# 分支
+# 分支指定为git仓库的master
 spring.cloud.config.label=master
-# 配置服务发现方式和名称
+# 从注册中心获取配置服务地址
 spring.cloud.config.discovery.enabled=true
 spring.cloud.config.discovery.serviceId=config-server
+# 直接指定配置服务地址
 # spring.cloud.config.url=http://127.0.0.1:7061
 
+# 开放自动刷新权限
 management.security.enabled=false
 ```
 
