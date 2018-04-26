@@ -8,7 +8,7 @@ Config Server: 集中式的配置服务器，它用于集中管理应用各个�
 
 Config Client: 配置客户端，用于操作存储在Config Server上的配置属性，ConfigClient随微服务启动时会请求Config Server获取所需要的配置属性，然后缓存这些属性以提高性能。
 
-这里我们基于Eureka Server实现一个服务配置中心。
+这里我们基于Config Server实现一个服务配置中心。
 
 ### 1.创建配置中心仓库
 
