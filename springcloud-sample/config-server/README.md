@@ -114,9 +114,10 @@ spring.cloud.config.server.git.password: your paasword
 
 ### 4.启动服务配置中心
 直接运行ConfigServerApplication的main函数，启动Config Server。
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条CONGIG-PROVIDER服务实例记录
 
-访问[http://localhost:7061//config-client/default](http://127.0.0.1:7061/config-client/default)获取配置项：
+访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server管理界面上新增加一条CONGIG-SERVER服务实例记录
+
+访问[http://localhost:7061/config-client/default](http://127.0.0.1:7061/config-client/default)获取指定应用的配置项：
 
 {"name":"config-client","profiles":["default"],"label":null,"version":"600b66934a9d8c7d7290de16f759a97900d803b0","state":null,"propertySources":[{"name":"https://github.com/cse-sample/springcloud-2-cse/springcloud-sample/config-repo/config-client.properties","source":{"profile":"default"}}]}
 
