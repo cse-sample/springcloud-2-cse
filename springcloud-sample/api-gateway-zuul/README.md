@@ -2,7 +2,7 @@
 
 Zuul是Netflix基于JVM的路由器和服务器端负载均衡器，主要功能包括：反向代理，智能路由，权限校验等。Zuul默认集成了Ribbon来定位一个通过发现转发的实例
 
-Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务。这里我们基于Netflix Zuul创建一个服务网关。
+Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务。这里我们基于Netflix Zuul创建一个服务网关，将服务能力以Rest接口方式开发出去。
 
 ### 1.从 Spring Initializr 进行项目的初始化
 
@@ -91,7 +91,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:7071/eureka/
 * server.port: 指明了应用启动的端口号
 * eureka.client.serviceUrl.defaultZone: 指明了注册服务中心的URL
 
-配置路由：
+配置路由，开放service-provider服务的/hello接口：
 ```
 zuul.routes.service-provider.path=/hello/**
 
