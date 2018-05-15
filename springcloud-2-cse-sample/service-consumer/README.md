@@ -29,7 +29,7 @@
 
 ### 2.自定义RibbonClient
 采用CSE服务实例清单的维护机制，需要替代Ribbon默认的负载均衡策略，可以通过配置文件来自定义RibbonClient。
-修改 application.propertie或application.yaml，增加如下配置：
+修改 application.properties或application.yaml，增加如下配置：
 
 ```
 service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList
