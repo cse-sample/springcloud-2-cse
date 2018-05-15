@@ -7,7 +7,7 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 
 ### 1.修改pom文件
 
-- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
@@ -53,7 +53,7 @@ cse.credentials.project=cn-north-1
 * cse.credentials.accessKey: 用户华为云账户AK
 * cse.credentials.secretKey: 用户华为云账户SK
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
-* cse.credentials.project: 注册Region，默认为华北区cn-north-1
+* cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
 
 ### 4.启动服务配置中心
 
