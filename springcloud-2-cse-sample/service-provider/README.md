@@ -4,7 +4,7 @@
 
 ### 1.修改pom文件
 
-- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
@@ -64,7 +64,7 @@ public String instance(@RequestParam(value = "serviceId", required = false) Stri
 ```
 
 ### 3.修改应用配置
-修改 application.propertie或application.yaml，从而接入CSE服务中心，增加如下配置：
+修改 application.properties或application.yaml，从而接入CSE服务中心，增加如下配置：
 
 ```yaml
 cse.credentials.accessKey=your access key in CSE
