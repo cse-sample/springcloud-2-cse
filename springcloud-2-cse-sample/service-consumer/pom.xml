@@ -42,10 +42,10 @@
 		</dependency>
 
 		<dependency>
-		<groupId>com.huawei.paas.cse</groupId>
-		<artifactId>cse-solution-spring-cloud</artifactId>
-		<version>2.3.19</version>
-	</dependency>
+			<groupId>com.huawei.paas.cse</groupId>
+			<artifactId>cse-solution-spring-cloud</artifactId>
+			<version>2.3.19</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

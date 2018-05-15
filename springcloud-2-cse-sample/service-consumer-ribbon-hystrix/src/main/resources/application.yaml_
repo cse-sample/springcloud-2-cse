@@ -13,6 +13,16 @@ eureka:
 logging:
   file: ${spring.application.name}.log
 
+cse:
+  service:
+    registry:
+      address: http://127.0.0.1:7071
+  credentials:
+    accessKey: your access key in CSE
+    secretKey: your secret key in CSE
+    akskCustomCipher: default
+    project: cn-north-1
+
 service-provider:
   ribbon:
     NIWSServerListClassName: org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList
