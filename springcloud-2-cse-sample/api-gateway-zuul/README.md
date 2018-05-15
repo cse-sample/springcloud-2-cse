@@ -8,7 +8,7 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 
 ### 1.修改pom文件
 
-- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
@@ -57,13 +57,13 @@ cse.credentials.project=cn-north-1
 * cse.credentials.accessKey: 用户华为云账户AK
 * cse.credentials.secretKey: 用户华为云账户SK
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
-* cse.credentials.project: 注册Region，默认为华北区cn-north-1
+* cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
 
 ### 4.启动应用
 直接运行ZuulApiGatewayApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
+访问[https://www.huaweicloud.com](https://console.huaweicloud.com/servicestage/?agencyId=e55e96c30bd3483385985b6849a1b28e&locale=zh-cn&region=cn-north-1#/cse/services/tab/services)，可以看到服务目录上新增一条api-gateway-zuul服务实例记录
 
-访问[http://localhost:8080/api/hello/springcloud](http://localhost:7091/hello-sync/springcloud)，同步方式调用服务/hello接口
+访问[http://localhost:8080/api/hello/springcloud](http://localhost:8080/api/hello/springcloud)，同步方式调用服务/hello接口
 
 
