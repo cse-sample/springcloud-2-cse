@@ -12,7 +12,7 @@ Spring Cloud有两种服务调用方式，一种是Ribbon + RestTemplate，另�
 
 ### 1.修改pom文件
 
-- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
@@ -37,7 +37,7 @@ Spring Cloud有两种服务调用方式，一种是Ribbon + RestTemplate，另�
 
 ### 2.自定义RibbonClient
 采用CSE服务实例清单的维护机制，需要替代Ribbon默认的负载均衡策略，可以通过配置文件来自定义RibbonClient。
-修改 application.propertie或application.yaml，增加如下配置：
+修改 application.properties或application.yaml，增加如下配置：
 
 ```
 service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList
@@ -48,7 +48,7 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 * org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList: CSE服务实例清单的维护机制
 
 ### 3.修改应用配置
-修改 application.propertie或application.yaml，从而接入CSE服务中心，增加如下配置：
+修改 application.properties或application.yaml，从而接入CSE服务中心，增加如下配置：
 
 ```yaml
 cse.credentials.accessKey=your access key in CSE
