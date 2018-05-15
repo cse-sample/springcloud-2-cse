@@ -53,7 +53,7 @@ cse.credentials.project=cn-north-1
 * cse.credentials.accessKey: 用户华为云账户AK
 * cse.credentials.secretKey: 用户华为云账户SK
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
-* cse.credentials.project: 注册Region，默认为华北区cn-north-1
+* cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
 
 ### 4.启动服务
 直接运行ConsumerApplication的main函数
