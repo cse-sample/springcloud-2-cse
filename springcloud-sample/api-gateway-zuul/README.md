@@ -105,6 +105,6 @@ zuul.routes.service-provider.stripPrefix=false
 
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条ZUUL-API-GATEWAY服务实例记录
 
-访问[http://localhost:8080/hello/springcloud](http://localhost:8080/hello/springcloud)，调用API Gateway接口：
+访问[http://localhost:8080/api/hello/springcloud](http://localhost:8080/hello/springcloud)，调用API Gateway接口：
 
 hello springcloud

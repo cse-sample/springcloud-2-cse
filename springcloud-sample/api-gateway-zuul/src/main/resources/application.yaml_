@@ -13,8 +13,8 @@ eureka:
 zuul:
   routes:
     api-gateway:
-      path: /hello/**
-      stripPrefix: false
+      path: /api/**
+      stripPrefix: true
       serviceId: service-provider
 
 logging:

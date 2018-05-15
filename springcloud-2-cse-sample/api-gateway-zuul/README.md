@@ -20,52 +20,14 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
-- dependencyManagement中增加cse-dependency，方便管理三方件。可根据需求选择不同CSE版本，当前最新为2.3.12。
+
+- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.19
 
 ```xml
-<dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-dependencies</artifactId>
-			<version>${spring-cloud.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.huawei.paas.cse</groupId>
-			<artifactId>cse-dependency</artifactId>
-			<version>2.3.12</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-	</dependencies>
-</dependencyManagement>
-```
-- 增加CSE服务注册和发现依赖
-
-```xml
-<dependency>
-	<groupId>org.apache.servicecomb</groupId>
-	<artifactId>spring-boot-starter-registry</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.apache.servicecomb</groupId>
-	<artifactId>spring-boot-starter-configuration</artifactId>
-</dependency>
-<dependency>
-	<groupId>org.apache.servicecomb</groupId>
-	<artifactId>spring-boot-starter-discovery</artifactId>
-</dependency>
 <dependency>
 	<groupId>com.huawei.paas.cse</groupId>
-	<artifactId>foundation-auth</artifactId>
-	<exclusions>
-		<exclusion>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</exclusion>
-	</exclusions>
+	<artifactId>cse-solution-spring-cloud</artifactId>
+	<version>2.3.19</version>
 </dependency>
 ```
 
@@ -81,60 +43,27 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 * service-provider.ribbon.NIWSServerListClassName: RibbonClient的配置规则，<服务名>.ribbon.<类型>
 * org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList: CSE服务实例清单的维护机制
 
-### 3.启用服务注册和发现
-
-在原 ZuulApiGatewayApplication.java 中增加<html>@ImportResource</html>，自动注入CSE依赖Bean。
-
-```Java
-@SpringBootApplication
-@EnableZuulProxy
-@ImportResource(locations = "classpath*:META-INF/spring/*.bean.xml")
-public class ZuulApiGatewayApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ZuulApiGatewayApplication.class, args);
-	}
-}
-```
-
-### 4.修改应用配置
-src/main/resources下增加微服务描述文件microservice.yaml，如下配置：
+### 3.修改应用配置
+修改 application.propertie或application.yaml，从而接入CSE服务中心，增加如下配置：
 
 ```yaml
-cse-config-order: 100
-APPLICATION_ID: springcloud-2-cse-sample
-service_description:
-  name: api-gateway-zuul
-  version: 0.0.1
-cse:
-  service:
-    registry:
-      address: https://cse.cn-north-1.myhwclouds.com:443
-      instance:
-        watch: false
-  config:
-    client:
-      serverUri: https://cse.cn-north-1.myhwclouds.com:443
-      refreshMode: 1
-      refresh_interval: 15000
-  rest:
-    address: 0.0.0.0:8080 # 8080端口与src/main/resources/application.yml中server.port保持一致
-  credentials:
-    accessKey: your access key in CSE
-    secretKey: your secret key in CSE
-    akskCustomCipher: default
+cse.credentials.accessKey=your access key in CSE
+cse.credentials.secretKey=your secret key in CSE
+cse.credentials.akskCustomCipher=default
+cse.credentials.project=cn-north-1
 ```
 其中：
 
 * cse.credentials.accessKey: 用户华为云账户AK
 * cse.credentials.secretKey: 用户华为云账户SK
-* cse.rest.address: 注册到服务中心的EndPoint，需要与src/main/resources/application.yml中server.port保持一致
+* cse.credentials.akskCustomCipher: 加密方式，默认不加密
+* cse.credentials.project: 注册Region，默认为华北区cn-north-1
 
-### 5.启动应用
+### 4.启动应用
 直接运行ZuulApiGatewayApplication的main函数
 
 访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER服务实例记录
 
-访问[http://localhost:8080/hello/springcloud](http://localhost:7091/hello-sync/springcloud)，同步方式调用服务/hello接口
+访问[http://localhost:8080/api/hello/springcloud](http://localhost:7091/hello-sync/springcloud)，同步方式调用服务/hello接口
 
 
