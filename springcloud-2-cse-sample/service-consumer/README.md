@@ -4,7 +4,7 @@
 
 ### 1.修改pom文件
 
-- 删除spring-cloud-starter-eureka-server依赖，并增加spring-boot-starter-web运行依赖
+- 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
 
 ```xml
 <!--<dependency>-->
