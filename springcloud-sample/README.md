@@ -33,10 +33,10 @@ SpringCloud Edgware.SR2
 | eureka-server                   | 服务注册中心              | 7071      | http://127.0.0.1:7071/                    |
 | service-provider                | 服务提供者                | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
 | service-consume                 | 服务消费者                | 7091      | http://127.0.0.1:7091/consumer/hello-sync/xxx      |
-| service-consume-ribbon          | 服务消费者-Ribbon         | 7092      | http://127.0.0.1:7091/ribbon/hello-sync/xxx      |
-| service-consume-feign           | 服务消费者-Feign          | 7093      | http://127.0.0.1:7091/feign/hello-sync/xxx          |
-| service-consume-ribbon-hystrix  | 服务消费者-Ribbon-Hystrix | 7094      | http://127.0.0.1:7091/ribbon-hystrix/hello-sync/xxx |
-| service-consume-feign-hystrix   | 服务消费者-Feign-Hystrix  | 7095      | http://127.0.0.1:7091/feign-hystrix/hello-sync/xxx  |
+| service-consume-ribbon          | 服务消费者-Ribbon         | 7092      | http://127.0.0.1:7092/ribbon/hello-sync/xxx      |
+| service-consume-feign           | 服务消费者-Feign          | 7093      | http://127.0.0.1:7093/feign/hello-sync/xxx          |
+| service-consume-ribbon-hystrix  | 服务消费者-Ribbon-Hystrix | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello-sync/xxx |
+| service-consume-feign-hystrix   | 服务消费者-Feign-Hystrix  | 7095      | http://127.0.0.1:7095/feign-hystrix/hello-sync/xxx  |
 | zipkin-server                   | 调用链服务                | 7051      | http://127.0.0.1:7051/           |
 | service-provider-zipkin          | 服务消费者-Zipkin        | 7052      | http://127.0.0.1:7052/hello/xxx  |
 | service-consume-zipkin          | 服务消费者-Zipkin         | 7053      | http://127.0.0.1:7053/hello/xxx  |
