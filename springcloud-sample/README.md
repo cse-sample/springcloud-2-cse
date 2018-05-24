@@ -28,7 +28,7 @@ SpringCloud Edgware.SR2
 | 微服务工程名                     | 描述                     | 端口号     | 接口                                      |
 | ------------------------------- | ------------------------ | --------- | ----------------------------------------  |
 | api-gateway-zuul                | 网关-API GateWay         | 8080      | http://127.0.0.1:8080/hello/xxx           |
-| config-server                   | 配置服务中心              | 7061      | http://127.0.0.1:7061/config-client/xxx   |
+| config-server                   | 配置服务中心              | 7061      | http://127.0.0.1:7061/config-client/dev   |
 | config-client                   | 配置服务客户端            | 7092      | http://127.0.0.1:7062/profile             |
 | eureka-server                   | 服务注册中心              | 7071      | http://127.0.0.1:7071/                    |
 | service-provider                | 服务提供者                | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
