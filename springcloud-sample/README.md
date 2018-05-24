@@ -38,7 +38,7 @@ SpringCloud Edgware.SR2
 | service-consume-ribbon-hystrix  | 服务消费者-Ribbon-Hystrix | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
 | service-consume-feign-hystrix   | 服务消费者-Feign-Hystrix  | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
 | zipkin-server                   | 调用链服务                | 7051      | http://127.0.0.1:7051/           |
-| service-provider-zipkin          | 服务消费者-Zipkin        | 7052      | http://127.0.0.1:7052/hello/xxx  |
-| service-consume-zipkin          | 服务消费者-Zipkin         | 7053      | http://127.0.0.1:7053/hello/xxx  |
+| zipkin-service-provider         | 服务消费者-Zipkin         | 7052      | http://127.0.0.1:7052/hello/xxx  |
+| zipkin-service-consumer         | 服务消费者-Zipkin         | 7053      | http://127.0.0.1:7053/hello/xxx  |
  
  
