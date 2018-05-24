@@ -32,8 +32,8 @@ SpringCloud Edgware.SR2
 | config-client                   | 配置服务客户端            | 7092      | http://127.0.0.1:7092/profile             |
 | eureka-server                   | 服务注册中心              | 7071      | http://127.0.0.1:7071/                    |
 | service-provider                | 服务提供者                | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
-| service-consume                 | 服务消费者                | 7091      | http://127.0.0.1:7091/hello-sync/xxx      |
-| service-consume-ribbon          | 服务消费者-Ribbon         | 7092      | http://127.0.0.1:7091/hello-sync/xxx      |
+| service-consume                 | 服务消费者                | 7091      | http://127.0.0.1:7091/consumer/hello-sync/xxx      |
+| service-consume-ribbon          | 服务消费者-Ribbon         | 7092      | http://127.0.0.1:7091/ribbon/hello-sync/xxx      |
 | service-consume-feign           | 服务消费者-Feign          | 7093      | http://127.0.0.1:7091/feign/hello-sync/xxx          |
 | service-consume-ribbon-hystrix  | 服务消费者-Ribbon-Hystrix | 7094      | http://127.0.0.1:7091/ribbon-hystrix/hello-sync/xxx |
 | service-consume-feign-hystrix   | 服务消费者-Feign-Hystrix  | 7095      | http://127.0.0.1:7091/feign-hystrix/hello-sync/xxx  |
