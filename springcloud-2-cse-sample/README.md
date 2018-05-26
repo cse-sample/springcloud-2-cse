@@ -6,9 +6,8 @@
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-2-cse-sample/images/design.png)
 
-1. ServerStage兼容SpringCloud应用，不需要自己部署eureka-server，config-server，zipkin-server等微服务运行所需基础支撑服务
+ServerStage兼容SpringCloud应用，不需要自己部署eureka-server，config-server，zipkin-server等微服务运行所需基础支撑服务
 
-2. 上云步骤
 #### 1.修改pom文件
 
 - 删除spring-cloud-starter-eureka依赖，并增加spring-boot-starter-web运行依赖
