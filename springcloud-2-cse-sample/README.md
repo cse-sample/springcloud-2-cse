@@ -77,8 +77,8 @@ cse.credentials.project=cn-north-1
 | [service-consumer](./service-consumer)   | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
 | [service-consumer-ribbon](./service-consumer-ribbon)  | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
 | [service-consumer-feign](./service-consumer-feign)    | 7093      | http://127.0.0.1:7093/feign/hello/xxx          |
-| [service-consume-ribbon-hystrix](./service-consume-ribbon-hystrix)  | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
-| [service-consume-feign-hystrix](./service-consume-feign-hystrix)    | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
+| [service-consumer-ribbon-hystrix](./service-consumer-ribbon-hystrix)  | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
+| [service-consumer-feign-hystrix](./service-consumer-feign-hystrix)    | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
 | zipkin-server 不涉及                                   | 7051      | http://127.0.0.1:7051/           |
 | [zipkin-service-provider](./zipkin-service-provider)  | 7052      | http://127.0.0.1:7052/hello/xxx  |
 | [zipkin-service-consumer](./zipkin-service-consumer)  | 7053      | http://127.0.0.1:7053/hello/xxx  |
