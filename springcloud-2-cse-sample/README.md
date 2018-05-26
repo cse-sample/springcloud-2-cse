@@ -58,8 +58,8 @@ cse.credentials.project=cn-north-1
 ```
 其中：
 
-* cse.credentials.accessKey: 用户华为云账户AK
-* cse.credentials.secretKey: 用户华为云账户SK
+* cse.credentials.accessKey: 用户华为云账户AK，[获取](https://support.huaweicloud.com/api-iam/zh-cn_topic_0057845589.html)
+* cse.credentials.secretKey: 用户华为云账户SK，[获取](https://support.huaweicloud.com/api-iam/zh-cn_topic_0057845589.html)
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
 * cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
 
@@ -67,18 +67,18 @@ cse.credentials.project=cn-north-1
 
 #### 4.启动应用
 
-| 微服务工程名                     | 描述                     | 端口号     | 接口                                      |
-| ------------------------------- | ------------------------ | --------- | ----------------------------------------  |
-| api-gateway-zuul                | 接入指南         | 8080      | http://127.0.0.1:8080/hello/xxx           |
-| config-server                   | 配置服务中心              | 7061      | http://127.0.0.1:7061/config-client/dev   |
-| config-client                   | 配置服务客户端            | 7092      | http://127.0.0.1:7062/profile             |
-| eureka-server                   | 服务注册中心              | 7071      | http://127.0.0.1:7071/                    |
-| service-provider                | 服务提供者                | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
-| service-consume                 | 服务消费者                | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
-| service-consume-ribbon          | 服务消费者-Ribbon         | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
-| service-consume-feign           | 服务消费者-Feign          | 7093      | http://127.0.0.1:7093/feign/hello/xxx          |
-| service-consume-ribbon-hystrix  | 服务消费者-Ribbon-Hystrix | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
-| service-consume-feign-hystrix   | 服务消费者-Feign-Hystrix  | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
-| zipkin-server                   | 调用链服务                | 7051      | http://127.0.0.1:7051/           |
-| zipkin-service-provider         | 服务消费者-Zipkin         | 7052      | http://127.0.0.1:7052/hello/xxx  |
-| zipkin-service-consumer         | 服务消费者-Zipkin         | 7053      | http://127.0.0.1:7053/hello/xxx  |
+| 接入指导                     |        端口号     | 接口                                      |
+| -------------------------------  | --------- | ----------------------------------------  |
+| [api-gateway-zuul](../api-gateway-zuul)                 | 8080      | http://127.0.0.1:8080/hello/xxx           |
+| config-server                          | 7061      | http://127.0.0.1:7061/config-client/dev   |
+| config-client                             | 7092      | http://127.0.0.1:7062/profile             |
+| eureka-server                             | 7071      | http://127.0.0.1:7071/                    |
+| service-provider                               | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
+| service-consume                               | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
+| service-consume-ribbon                  | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
+| service-consume-feign                    | 7093      | http://127.0.0.1:7093/feign/hello/xxx          |
+| service-consume-ribbon-hystrix  | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
+| service-consume-feign-hystrix     | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
+| zipkin-server                    | 7051      | http://127.0.0.1:7051/           |
+| zipkin-service-provider           | 7052      | http://127.0.0.1:7052/hello/xxx  |
+| zipkin-service-consumer           | 7053      | http://127.0.0.1:7053/hello/xxx  |
