@@ -63,7 +63,7 @@ cse.credentials.project=cn-north-1
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
 * cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
 
-说明：应用在线下启动，远程连接华为云上服务注册，配置中心场景才需要配置。使用ServiceStage部署应用，可以跳过步骤3。
+说明：使用ServiceStage部署应用，可以跳过步骤3。应用在线下运行，连接华为云上服务注册、配置中心需要上面配置。
 
 #### 4.启动应用
 
