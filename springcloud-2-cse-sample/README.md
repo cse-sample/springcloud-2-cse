@@ -67,18 +67,18 @@ cse.credentials.project=cn-north-1
 
 #### 4.启动应用
 
-| 接入指导                     |        端口号     | 接口                                      |
-| -------------------------------  | --------- | ----------------------------------------  |
-| [api-gateway-zuul](./api-gateway-zuul)                 | 8080      | http://127.0.0.1:8080/hello/xxx           |
-| config-server                          | 7061      | http://127.0.0.1:7061/config-client/dev   |
-| config-client                             | 7092      | http://127.0.0.1:7062/profile             |
-| eureka-server                             | 7071      | http://127.0.0.1:7071/                    |
-| service-provider                               | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
-| service-consume                               | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
-| service-consume-ribbon                  | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
-| service-consume-feign                    | 7093      | http://127.0.0.1:7093/feign/hello/xxx          |
-| service-consume-ribbon-hystrix  | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
-| service-consume-feign-hystrix     | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
-| zipkin-server                    | 7051      | http://127.0.0.1:7051/           |
-| zipkin-service-provider           | 7052      | http://127.0.0.1:7052/hello/xxx  |
-| zipkin-service-consumer           | 7053      | http://127.0.0.1:7053/hello/xxx  |
+| 接入指导                           | 端口号     | 接口                                      |
+| ---------------------------------  | --------- | ----------------------------------------  |
+| [api-gateway-zuul](./api-gateway-zuul)  | 8080      | http://127.0.0.1:8080/hello/xxx           |
+| config-server 不涉及                     | 7061      | http://127.0.0.1:7061/config-client/dev   |
+| [config-client](./config-client)        | 7092      | http://127.0.0.1:7062/profile             |
+| eureka-server 不涉及                     | 7071      | http://127.0.0.1:7071/                    |
+| [service-provider](./service-provider)   | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
+| [service-consumer](./service-consumer)   | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
+| [service-consumer-ribbon](./service-consumer-ribbon)  | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
+| [service-consumer-feign](./service-consumer-feign)    | 7093      | http://127.0.0.1:7093/feign/hello/xxx          |
+| [service-consume-ribbon-hystrix](./service-consume-ribbon-hystrix)  | 7094      | http://127.0.0.1:7094/ribbon-hystrix/hello/xxx |
+| [service-consume-feign-hystrix](./service-consume-feign-hystrix)    | 7095      | http://127.0.0.1:7095/feign-hystrix/hello/xxx  |
+| zipkin-server 不涉及                                   | 7051      | http://127.0.0.1:7051/           |
+| [zipkin-service-provider](./zipkin-service-provider)  | 7052      | http://127.0.0.1:7052/hello/xxx  |
+| [zipkin-service-consumer](./zipkin-service-consumer)  | 7053      | http://127.0.0.1:7053/hello/xxx  |
