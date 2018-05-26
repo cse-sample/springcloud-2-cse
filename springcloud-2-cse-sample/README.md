@@ -6,7 +6,7 @@
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-2-cse-sample/images/design.png)
 
-华为微服务服务引擎(Cloud Service Engine)兼容SpringCloud应用，使用SpringCloud技术栈开发的业务业务，在华为云上部署时，不需要部署eureka-server，config-server，zipkin-server等微服务运行所需基础支撑服务，只需要关注业务微服务本身即可，具体改造步骤如下：
+[华为微服务服务引擎(Cloud Service Engine)](https://www.huaweicloud.com/product/cse.html)兼容SpringCloud应用，使用SpringCloud技术栈开发的业务业务，在华为云上部署时，不需要部署eureka-server，config-server，zipkin-server等微服务运行所需基础支撑服务，只需要关注业务微服务本身即可，具体改造步骤如下：
 
 #### 1.修改pom文件
 
