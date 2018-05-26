@@ -70,9 +70,9 @@ cse.credentials.project=cn-north-1
 | 接入指导                           | 端口号     | 接口                                      |
 | ---------------------------------  | --------- | ----------------------------------------  |
 | [api-gateway-zuul](./api-gateway-zuul)  | 8080      | http://127.0.0.1:8080/hello/xxx           |
-| config-server 不涉及                     | 7061      | http://127.0.0.1:7061/config-client/dev   |
+| ~~config-server 不涉及~~                     | ~~7061~~      | ~~http://127.0.0.1:7061/config-client/dev~~   |
 | [config-client](./config-client)        | 7092      | http://127.0.0.1:7062/profile             |
-| eureka-server 不涉及                     | 7071      | http://127.0.0.1:7071/                    |
+| ~~eureka-server 不涉及                     | 7071      | http://127.0.0.1:7071/~~                    |
 | [service-provider](./service-provider)   | 7081,7082 | http://127.0.0.1:7081/hello/xxx           |
 | [service-consumer](./service-consumer)   | 7091      | http://127.0.0.1:7091/consumer/hello/xxx  |
 | [service-consumer-ribbon](./service-consumer-ribbon)  | 7092      | http://127.0.0.1:7092/ribbon/hello/xxx    |
