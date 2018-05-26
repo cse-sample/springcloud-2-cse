@@ -1,6 +1,6 @@
 ### 项目简介
 
-基于SpringCloud技术栈的应用快速接入到[ServiceStage微服务云应用平台](https://servicestage.huaweicloud.com)
+基于SpringCloud技术栈的应用快速部署到[ServiceStage微服务云应用平台](https://servicestage.huaweicloud.com)
 
 ### 接入说明
 
