@@ -41,10 +41,10 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 ```
 其中：
 
-* service-provider.ribbon.NIWSServerListClassName: RibbonClient的配置规则，<服务名>.ribbon.<类型>
+* service-provider.ribbon.NIWSServerListClassName: 配置规则，<服务名>.ribbon.<类型>，service_provider为实际依赖的服务名，根据实际情况配置
 * org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList: 从华为云微服务中心获取服务实例列表
 
-说明：纯粹的服务消费者可以跳过第2步
+说明：纯粹的服务提供者可以跳过第2步
 
 #### 3.修改应用配置
 修改 application.properties或application.yaml，配置接入地址和身份认证信息：
