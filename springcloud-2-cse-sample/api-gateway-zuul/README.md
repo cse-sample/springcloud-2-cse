@@ -62,7 +62,9 @@ cse.credentials.project=cn-north-1
 ### 4.启动应用
 直接运行ZuulApiGatewayApplication的main函数
 
-访问[https://www.huaweicloud.com](https://console.huaweicloud.com/servicestage/?agencyId=e55e96c30bd3483385985b6849a1b28e&locale=zh-cn&region=cn-north-1#/cse/services/tab/services)，可以看到服务目录上新增一条api-gateway-zuul服务实例记录
+另外还有启动service-provider服务，网关会将请求转发到该服务
+
+访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例是否注册成功
 
 访问[http://localhost:8080/api/hello/springcloud](http://localhost:8080/api/hello/springcloud)，同步方式调用服务/hello接口
 
