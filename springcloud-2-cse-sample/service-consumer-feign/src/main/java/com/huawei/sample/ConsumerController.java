@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/feign")
 public class ConsumerController {
 
 	private static final Logger LOGGER = Logger.getLogger(ConsumerController.class);
@@ -20,12 +21,12 @@ public class ConsumerController {
 		return consumerFeignClient.hello(name);
 	}
 
-	@RequestMapping("/consumer/services")
+	@RequestMapping("/services")
 	public String services() {
 		return consumerFeignClient.services();
 	}
 
-	@RequestMapping(value = "/consumer/instances")
+	@RequestMapping(value = "/instances")
 	public String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId) {
 
 		LOGGER.info("serviceId: " + serviceId);

@@ -13,6 +13,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RequestMapping("/ribbon")
 public class ConsumerController {
 
 	private static final Logger LOGGER = Logger.getLogger(ConsumerController.class);
@@ -23,7 +24,7 @@ public class ConsumerController {
 	@Autowired
 	private AsyncRestTemplate asnycRestTemplate;
 
-	@RequestMapping("/hello-sync/{name}")
+	@RequestMapping("/hello/{name}")
 	public String syncHello(@PathVariable("name") String name) {
 		String url = "http://service-provider/hello/" + name;
 		
