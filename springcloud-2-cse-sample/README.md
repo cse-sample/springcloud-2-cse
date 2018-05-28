@@ -67,7 +67,7 @@ cse.credentials.project=cn-north-1
 
 #### 4.启动应用
 
-在本地启动所有的应用，登陆到ServiceStage或CSE，切换到服务目录，查看服务实例列表：
+在本地启动所有的应用，访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例列表：
 
 ![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-2-cse-sample/images/service_discovery.png)
 
