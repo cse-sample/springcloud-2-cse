@@ -56,8 +56,8 @@ cse.credentials.akskCustomCipher=default
 
 cse.credentials.project=cn-north-1
 
-cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com:443
-cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com:443
+cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com
+cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 ```
 其中：
 
@@ -65,8 +65,8 @@ cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com:443
 * cse.credentials.secretKey: 用户华为云账户SK，[获取](https://support.huaweicloud.com/api-iam/zh-cn_topic_0057845589.html)
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
 * cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
-* cse.service.registry.address: CSE注册中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com:443
-* cse.config.client.serverUri: CSE配置中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com:443
+* cse.service.registry.address: CSE注册中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com
+* cse.config.client.serverUri: CSE配置中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com
 
 说明：使用ServiceStage部署应用，可以跳过步骤3。应用在线下运行，连接华为云上服务注册、配置中心需要上面配置。
 

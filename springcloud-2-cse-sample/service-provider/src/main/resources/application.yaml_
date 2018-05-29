@@ -21,7 +21,7 @@ cse:
     project: cn-north-1
   service:
     registry:
-      address: https://cse.cn-north-1.myhuaweicloud.com:443
+      address: https://cse.cn-north-1.myhuaweicloud.com
   config:
     client:
-      serverUri: https://cse.cn-north-1.myhuaweicloud.com:443
+      serverUri: https://cse.cn-north-1.myhuaweicloud.com
