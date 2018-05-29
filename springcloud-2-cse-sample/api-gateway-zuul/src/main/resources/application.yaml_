@@ -26,6 +26,12 @@ cse:
     secretKey: your secret key in CSE
     akskCustomCipher: default
     project: cn-north-1
+  service:
+    registry:
+      address: https://cse.cn-north-1.myhuaweicloud.com:443
+  config:
+    client:
+      serverUri: https://cse.cn-north-1.myhuaweicloud.com:443
 
 service-provider:
   ribbon:
