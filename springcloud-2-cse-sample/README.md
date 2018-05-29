@@ -50,12 +50,13 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 修改 application.properties或application.yaml，配置接入地址和身份认证信息：
 
 ```yaml
+# 身份认证配置
 cse.credentials.accessKey=your access key in CSE
 cse.credentials.secretKey=your secret key in CSE
 cse.credentials.akskCustomCipher=default
-
 cse.credentials.project=cn-north-1
 
+# 注册中心和配置中心地址
 cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com
 cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 ```
@@ -64,11 +65,19 @@ cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 * cse.credentials.accessKey: 用户华为云账户AK，[获取](https://support.huaweicloud.com/api-iam/zh-cn_topic_0057845589.html)
 * cse.credentials.secretKey: 用户华为云账户SK，[获取](https://support.huaweicloud.com/api-iam/zh-cn_topic_0057845589.html)
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
-* cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
-* cse.service.registry.address: CSE注册中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com
-* cse.config.client.serverUri: CSE配置中心，可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认https://cse.cn-north-1.myhuaweicloud.com
+* cse.credentials.project: 区域配置，默认华北-北京一，即cn-north-1
+**使用ServiceStage部署应用，可以跳过上述认证配置。仅仅应用在线下运行，连接华为云上服务注册、配置中心需要上面配置**
 
-说明：使用ServiceStage部署应用，可以跳过步骤3。应用在线下运行，连接华为云上服务注册、配置中心需要上面配置。
+* cse.service.registry.address: CSE注册中心地址，默认连接华北-北京一
+* cse.config.client.serverUri: CSE配置中心地址，默认连接华北-北京一
+
+**附区域、注册与配置中心地址：**
+
+| 区域(Region)   |   cse.credentials.project   |    cse.service.registry.address / cse.config.client.serverUri |   
+| -------------- | --------------------------- | ---------------------------------------  | 
+|华北-北京一  | cn-north-1      | https://cse.cn-north-1.myhuaweicloud.com |    
+|华南-广州    | c-south-1      | https://cse.cn-south-1.myhuaweicloud.com |
+|华东-上海二  | cn-east-2     | https://cse.cn-east-2.myhuaweicloud.com | 
 
 #### 4.启动应用
 
