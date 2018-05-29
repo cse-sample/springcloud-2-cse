@@ -23,13 +23,13 @@ Hystrix就是用来解决这类问题的。
 </dependency>
 ```
 
-- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.19
+- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.20
 
 ```xml
 <dependency>
 	<groupId>com.huawei.paas.cse</groupId>
 	<artifactId>cse-solution-spring-cloud</artifactId>
-	<version>2.3.19</version>
+	<version>2.3.20</version>
 </dependency>
 ```
 
@@ -49,8 +49,8 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 修改 application.properties或application.yaml，从而接入CSE服务中心，增加如下配置：
 
 ```yaml
-cse.credentials.accessKey=your access key in CSE
-cse.credentials.secretKey=your secret key in CSE
+cse.credentials.accessKey=your access key
+cse.credentials.secretKey=your secret key
 cse.credentials.akskCustomCipher=default
 cse.credentials.project=cn-north-1
 cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com
