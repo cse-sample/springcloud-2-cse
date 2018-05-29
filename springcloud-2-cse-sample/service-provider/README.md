@@ -29,6 +29,8 @@
 
 ### 2.启用服务注册和发现
 
+**没有使用Registration对象的跳过这一步**
+
 在原 ProviderController.java 中注释Registration自动装配，目前CSE暂不支持Registration。
 
 ```Java

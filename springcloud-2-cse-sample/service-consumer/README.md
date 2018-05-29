@@ -58,6 +58,6 @@ cse.credentials.project=cn-north-1
 ### 4.启动服务
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7091/consumer/hello-sync/springcloud](http://localhost:7091/consumer/hello-sync/springcloud)，同步方式调用服务/hello接口
+访问[http://localhost:7091/consumer/hello/springcloud](http://localhost:7091/consumer/hello/springcloud)，同步方式调用服务/hello接口
 
 访问[http://localhost:7091/consumer/hello-async/springcloud](http://localhost:7091/consumer/hello-async/springcloud)，异步方式调用服务/hello接口

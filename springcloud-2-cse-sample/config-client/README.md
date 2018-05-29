@@ -59,6 +59,8 @@ cse.credentials.project=cn-north-1
 
 直接运行ConfigClientApplication的main函数，启动Config Client。
 
+访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例是否注册成功
+
 访问[http://localhost:7062/profile](http://localhost:7061/profile)，
 
 访问[http://localhost:7062/profile2](http://localhost:7061/profile2)
