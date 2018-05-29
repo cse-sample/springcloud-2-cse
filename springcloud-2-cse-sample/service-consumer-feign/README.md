@@ -63,6 +63,6 @@ cse.credentials.project=cn-north-1
 ### 4.启动应用
 直接运行ConsumerApplication的main函数
 
-访问[http://localhost:7071/](http://localhost:7071/)，可以看到Eureka Server自带的UI管理界面上新增一条SERVICE-CONSUMER-FEIGN服务实例记录
+访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例是否注册成功
 
-访问[http://localhost:7093/hello/springcloud](http://localhost:7093/hello/springcloud)，调用服务/hello接口
+访问[http://localhost:7093/feign/hello/springcloud](http://localhost:7093/feign/hello/springcloud)，调用服务/hello接口

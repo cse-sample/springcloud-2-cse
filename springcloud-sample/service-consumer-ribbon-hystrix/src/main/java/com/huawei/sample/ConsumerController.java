@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/ribbon-hystrix")
 public class ConsumerController {
 
 	@Autowired
 	private ConsumerService consumerService;
 
-	@RequestMapping("/hello-sync/{name}")
+	@RequestMapping("/hello/{name}")
 	public String syncHello(@PathVariable("name") String name) {
 		return consumerService.syncHello(name);
 	}

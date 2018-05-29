@@ -41,10 +41,10 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 ```
 其中：
 
-* service-provider.ribbon.NIWSServerListClassName: RibbonClient的配置规则，<服务名>.ribbon.<类型>
+* service-provider.ribbon.NIWSServerListClassName: 配置规则，<服务名>.ribbon.<类型>，service_provider为实际依赖的服务名，根据实际情况配置
 * org.apache.servicecomb.springboot.starter.discovery.ServiceCombServerList: 从华为云微服务中心获取服务实例列表
 
-说明：纯粹的服务消费者可以跳过第2步
+说明：纯粹的服务提供者可以跳过第2步
 
 #### 3.修改应用配置
 修改 application.properties或application.yaml，配置接入地址和身份认证信息：
@@ -67,12 +67,16 @@ cse.credentials.project=cn-north-1
 
 #### 4.启动应用
 
+在本地启动所有的应用，访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例列表：
+
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-2-cse-sample/images/service_discovery.png)
+
 
 附每个微服务接入指导：
 
 | 接入指导                           | 端口号     | 接口                                      |
 | ---------------------------------  | --------- | ----------------------------------------  |
-| [api-gateway-zuul](./api-gateway-zuul)  | 8080      | http://127.0.0.1:8080/hello/xxx           |
+| [api-gateway-zuul](./api-gateway-zuul)  | 8080      | http://127.0.0.1:8080/api/hello/xxx           |
 | ~~config-server 不涉及~~                     | ~~7061~~      | ~~http://127.0.0.1:7061/config-client/dev~~   |
 | [config-client](./config-client)        | 7092      | http://127.0.0.1:7062/profile             |
 | ~~eureka-server 不涉及~~                     | ~~7071~~      | ~~http://127.0.0.1:7071/~~                    |

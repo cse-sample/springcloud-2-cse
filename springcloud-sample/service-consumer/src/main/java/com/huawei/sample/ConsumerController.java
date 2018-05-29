@@ -16,6 +16,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@RequestMapping("/consumer")
 public class ConsumerController {
 
 	private static final Logger LOGGER = Logger.getLogger(ConsumerController.class);
@@ -29,7 +30,7 @@ public class ConsumerController {
 	@Autowired
 	private LoadBalancerClient loadBalancerClient;
 
-	@RequestMapping("/hello-sync/{name}")
+	@RequestMapping("/hello/{name}")
 	public String syncHello(@PathVariable("name") String name) {
 		
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
@@ -53,7 +54,7 @@ public class ConsumerController {
 		return future.get().getBody();
 	}
 	
-	@RequestMapping("/consumer/services")
+	@RequestMapping("/services")
 	public String services() {
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 
@@ -64,7 +65,7 @@ public class ConsumerController {
 		return restTemplate.getForObject(url, String.class);
 	}
 	
-	@RequestMapping(value = "/consumer/instances")
+	@RequestMapping(value = "/instances")
 	public String instances(@RequestParam(value = "serviceId", required = false, defaultValue = "") String serviceId) {
 		ServiceInstance serviceInst = loadBalancerClient.choose("service-provider");
 

@@ -1,9 +1,6 @@
 ## 创建服务配置客户端接入CSE
 
-Eureka提供云端服务发现，以实现云端中间层服务自动发现和故障转移。
-Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细分为 Eureka Server, Eureka Client。
-
-这里我们基于Eureka Client创建一个服务配置客户端，演示如何接入CSE。详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)。
+这里我们基于SpringCloud Config Client创建一个服务配置客户端，演示如何接入CSE配置中心。详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)。
 
 ### 1.修改pom文件
 
@@ -31,11 +28,28 @@ Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细
 ```
 
 ### 2.获取动态配置
+访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services), 将配置手工添加到配置中心（在服务实例注册到配置中心后添加）
+
+![](https://github.com/cse-sample/springcloud-2-cse/blob/master/springcloud-2-cse-sample/images/service_config.png)
+
 CSE不仅支撑@Value和@RefreshScope方式获取动态配置信息；也支持DynamicPropertyFactory获取最新配置信息。如新增一个接口，可以实时获取CSE配置中心的最新profile配置：
+
 ```Java
-@GetMapping("/profile2")
-public String hello2() {
-	return DynamicPropertyFactory.getInstance().getStringProperty("profile", null).getValue();
+@RestController
+@RefreshScope
+public class ConfigClientController {
+	@Value("${profile}")
+	private String profile;
+
+	@GetMapping("/profile")
+	public String profile() {
+		return this.profile;
+	}
+
+	@GetMapping("/profile2")
+	public String profile2() {
+		return DynamicPropertyFactory.getInstance().getStringProperty("profile", null).getValue();
+	}
 }
 ```
 
@@ -58,6 +72,8 @@ cse.credentials.project=cn-north-1
 ### 4.启动服务配置中心
 
 直接运行ConfigClientApplication的main函数，启动Config Client。
+
+访问[ServiceStage](https://console.huaweicloud.com/servicestage/?region=cn-north-1#/cse/services/tab/services)或[CSE](https://console.huaweicloud.com/cse/?region=cn-north-1#/cse/services/tab/services)，切换到服务目录，查看服务实例是否注册成功
 
 访问[http://localhost:7062/profile](http://localhost:7061/profile)，
 
