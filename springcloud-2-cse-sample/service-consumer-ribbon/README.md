@@ -25,13 +25,13 @@ Spring Cloud有两种服务调用方式，一种是Ribbon + RestTemplate，另�
 </dependency>
 ```
 
-- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.19
+- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.20
 
 ```xml
 <dependency>
 	<groupId>com.huawei.paas.cse</groupId>
 	<artifactId>cse-solution-spring-cloud</artifactId>
-	<version>2.3.19</version>
+	<version>2.3.20</version>
 </dependency>
 ```
 
