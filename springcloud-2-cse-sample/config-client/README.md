@@ -1,9 +1,6 @@
 ## 创建服务配置客户端接入CSE
 
-Eureka提供云端服务发现，以实现云端中间层服务自动发现和故障转移。
-Spring Cloud 集成了 Eureka，并提供了开箱即用的支持。Eureka可细分为 Eureka Server, Eureka Client。
-
-这里我们基于Eureka Client创建一个服务配置客户端，演示如何接入CSE。详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)。
+这里我们基于SpringCloud Config Client创建一个服务配置客户端，演示如何接入CSE配置中心。详细文档可参考[Spring Cloud应用接入CSE](https://support.huaweicloud.com/devg-cse/cse_03_0096.html)。
 
 ### 1.修改pom文件
 
