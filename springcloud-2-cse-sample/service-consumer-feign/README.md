@@ -69,7 +69,7 @@ cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 | 区域(Region)   |   cse.credentials.project   |    cse.service.registry.address / cse.config.client.serverUri |   
 | -------------- | --------------------------- | ---------------------------------------  | 
 |华北-北京一  | cn-north-1      | https://cse.cn-north-1.myhuaweicloud.com |    
-|华南-广州    | c-south-1      | https://cse.cn-south-1.myhuaweicloud.com |
+|华南-广州    | cn-south-1      | https://cse.cn-south-1.myhuaweicloud.com |
 |华东-上海二  | cn-east-2     | https://cse.cn-east-2.myhuaweicloud.com |
 
 ### 4.启动应用
