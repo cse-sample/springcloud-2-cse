@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RefreshScope
 public class ConfigClientController {
-	@Value("${profile}")
+	@Value("${profile:dev}")
 	private String profile;
 
 	@GetMapping("/profile")
