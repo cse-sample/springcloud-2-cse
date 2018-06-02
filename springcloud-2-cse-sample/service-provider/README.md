@@ -73,6 +73,8 @@ cse.credentials.accessKey=your access key in CSE
 cse.credentials.secretKey=your secret key in CSE
 cse.credentials.akskCustomCipher=default
 cse.credentials.project=cn-north-1
+cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com
+cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 ```
 其中：
 
@@ -80,6 +82,16 @@ cse.credentials.project=cn-north-1
 * cse.credentials.secretKey: 用户华为云账户SK
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
 * cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
+* cse.service.registry.address: CSE注册中心地址，默认连接华北-北京一
+* cse.config.client.serverUri: CSE配置中心地址，默认连接华北-北京一
+
+**附区域、注册与配置中心地址：**
+
+| 区域(Region)   |   cse.credentials.project   |    cse.service.registry.address / cse.config.client.serverUri |   
+| -------------- | --------------------------- | ---------------------------------------  | 
+|华北-北京一  | cn-north-1      | https://cse.cn-north-1.myhuaweicloud.com |    
+|华南-广州    | cn-south-1      | https://cse.cn-south-1.myhuaweicloud.com |
+|华东-上海二  | cn-east-2     | https://cse.cn-east-2.myhuaweicloud.com |
 
 ### 4.启动服务
 直接运行ProviderApplication的main函数

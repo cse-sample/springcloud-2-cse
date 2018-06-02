@@ -21,13 +21,13 @@ Spring Cloud微服务架构，客户端请求一般Ngnix --> Zuul -->微服务�
 </dependency>
 ```
 
-- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.19
+- 增加CSE服务注册和发现依赖。可根据需求选择不同CSE版本，当前最新为2.3.20
 
 ```xml
 <dependency>
 	<groupId>com.huawei.paas.cse</groupId>
 	<artifactId>cse-solution-spring-cloud</artifactId>
-	<version>2.3.19</version>
+	<version>2.3.20</version>
 </dependency>
 ```
 
@@ -47,10 +47,12 @@ service-provider.ribbon.NIWSServerListClassName=org.apache.servicecomb.springboo
 修改 application.properties或application.yaml，从而接入CSE服务中心，增加如下配置：
 
 ```yaml
-cse.credentials.accessKey=your access key in CSE
-cse.credentials.secretKey=your secret key in CSE
+cse.credentials.accessKey=your access key
+cse.credentials.secretKey=your secret key
 cse.credentials.akskCustomCipher=default
 cse.credentials.project=cn-north-1
+cse.service.registry.address=https://cse.cn-north-1.myhuaweicloud.com
+cse.config.client.serverUri=https://cse.cn-north-1.myhuaweicloud.com
 ```
 其中：
 
@@ -58,6 +60,16 @@ cse.credentials.project=cn-north-1
 * cse.credentials.secretKey: 用户华为云账户SK
 * cse.credentials.akskCustomCipher: 加密方式，默认不加密
 * cse.credentials.project: 可选华北-北京（cn-north-1）、华南-广州（cn-south-1）、华东-上海二（cn-east-2），默认cn-north-1
+* cse.service.registry.address: CSE注册中心地址，默认连接华北-北京一
+* cse.config.client.serverUri: CSE配置中心地址，默认连接华北-北京一
+
+**附区域、注册与配置中心地址：**
+
+| 区域(Region)   |   cse.credentials.project   |    cse.service.registry.address / cse.config.client.serverUri |   
+| -------------- | --------------------------- | ---------------------------------------  | 
+|华北-北京一  | cn-north-1      | https://cse.cn-north-1.myhuaweicloud.com |    
+|华南-广州    | cn-south-1      | https://cse.cn-south-1.myhuaweicloud.com |
+|华东-上海二  | cn-east-2     | https://cse.cn-east-2.myhuaweicloud.com |
 
 ### 4.启动应用
 直接运行ZuulApiGatewayApplication的main函数
